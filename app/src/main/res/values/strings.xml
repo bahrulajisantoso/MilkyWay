@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MilkyWay</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Nama</string>
+    <string name="empty_email">Email harus diisi</string>
+    <string name="invalid_email">Email tidak valid</string>
+    <string name="empty_pass">Password harus diisi</string>
+    <string name="invalid_pass">Password min 8 karakter</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dont_have_account">Belum Punya Akun? Register</string>
+    <string name="have_account">Sudah Punya Akun? Login</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="image_login">image login</string>
+    <string name="home">Home</string>
+    <string name="menu">menu</string>
+    <string name="need">Permintaan ASI</string>
+    <string name="donation">Donasi ASI</string>
+    <string name="care">Perawatan Bayi</string>
+    <string name="invalid_input">Data harus diisi</string>
+</resources>
