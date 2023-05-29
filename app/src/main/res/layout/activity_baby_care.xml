@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bodyWeightEditText" />
 
     <TextView
-        android:id="@+id/locationTextView"
+        android:id="@+id/recommendationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -97,19 +97,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultButton" />
 
-    <EditText
-        android:id="@+id/locationEditText"
+    <TextView
+        android:id="@+id/resultRecommendationTextView"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/form_input"
-        android:drawablePadding="10dp"
-        android:inputType="textMultiLine"
-        android:paddingHorizontal="10dp"
+        android:textColor="@color/color_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationTextView"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/recommendationTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
