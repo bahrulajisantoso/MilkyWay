@@ -20,4 +20,12 @@
     <string name="donation">Donasi ASI</string>
     <string name="care">Perawatan Bayi</string>
     <string name="invalid_input">Data harus diisi</string>
+    <string name="age">Umur</string>
+    <string name="religion">Agama</string>
+    <string name="location">Lokasi</string>
+    <string name="current_location">Lokasi Saat Ini</string>
+    <string name="save">Simpan</string>
+    <string name="recommendation">Rekomendasi</string>
+    <string name="body_weight">Berat Badan</string>
+    <string name="result">Hasil</string>
 </resources>
