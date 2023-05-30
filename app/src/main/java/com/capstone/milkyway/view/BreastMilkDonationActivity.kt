@@ -27,6 +27,10 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         supportActionBar?.hide()
+
+        binding.locationButton.setOnClickListener { getMyLocation() }
+
+        dropDown()
     }
 
     private fun getMyLocation() {
@@ -46,7 +50,8 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         }
         fusedLocationClient.lastLocation.addOnSuccessListener {
             if (it != null) {
-                val address = getAddressName(this@BreastMilkDonationActivity, it.latitude, it.longitude)
+                val address =
+                    getAddressName(this@BreastMilkDonationActivity, it.latitude, it.longitude)
                 binding.currentLocTextView.text = address
             }
         }
