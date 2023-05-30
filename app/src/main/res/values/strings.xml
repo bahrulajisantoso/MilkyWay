@@ -28,4 +28,12 @@
     <string name="recommendation">Rekomendasi</string>
     <string name="body_weight">Berat Badan</string>
     <string name="result">Hasil</string>
+
+    <string-array name="religions">
+        <item>Islam</item>
+        <item>Kristen</item>
+        <item>Katholik</item>
+        <item>Hindhu</item>
+        <item>Budha</item>
+    </string-array>
 </resources>

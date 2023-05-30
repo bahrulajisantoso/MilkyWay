@@ -39,7 +39,6 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/form_input"
         android:drawablePadding="10dp"
-        android:hint="@string/name"
         android:inputType="text"
         android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +65,6 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/form_input"
         android:drawablePadding="10dp"
-        android:hint="@string/age"
         android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,20 +82,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageEditText" />
 
-    <EditText
-        android:id="@+id/religionEditText"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/religionTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/form_input"
-        android:drawablePadding="10dp"
-        android:hint="@string/religion"
-        android:paddingHorizontal="10dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/religionTextView"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@id/religionTextView">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/locationTextView"
@@ -108,7 +115,7 @@
         android:text="@string/location"
         android:textColor="@color/color_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/religionEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/religionTextInputLayout" />
 
     <TextView
         android:id="@+id/currentLocTextView"
