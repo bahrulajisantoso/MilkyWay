@@ -9,7 +9,7 @@ import com.capstone.milkyway.auth.LoginActivity
 import com.capstone.milkyway.databinding.ActivityMainBinding
 import com.capstone.milkyway.view.BabyCareActivity
 import com.capstone.milkyway.view.BreastMilkDonationActivity
-import com.capstone.milkyway.view.NeedBreastMilkActivity
+import com.capstone.milkyway.view.BreastMilkRequestActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveActivity() {
         binding.apply {
             needButton.setOnClickListener {
-                startActivity(Intent(this@MainActivity, NeedBreastMilkActivity::class.java))
+                startActivity(Intent(this@MainActivity, BreastMilkRequestActivity::class.java))
             }
             donationButton.setOnClickListener {
                 startActivity(Intent(this@MainActivity, BreastMilkDonationActivity::class.java))
