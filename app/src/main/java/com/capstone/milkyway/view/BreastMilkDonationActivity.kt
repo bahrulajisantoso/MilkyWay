@@ -30,7 +30,33 @@ class BreastMilkDonationActivity : AppCompatActivity() {
 
         binding.locationButton.setOnClickListener { getMyLocation() }
 
+        setupAction()
         dropDown()
+    }
+
+    private fun setupAction() {
+        binding.saveButton.setOnClickListener {
+            val name = binding.nameEditText.text.toString()
+            val age = binding.ageEditText.text.toString()
+            val religion = binding.autoCompleteTextView.text.toString()
+            val location = binding.locationTextView.toString()
+            when {
+                name.isEmpty() -> {
+                    binding.nameEditText.error = "Nama harus diisi"
+                }
+                age.isEmpty() -> {
+                    binding.ageEditText.error = "Umur harus diisi"
+                }
+                religion.isEmpty() -> {
+                    Toast.makeText(this, "Agama harus diisi", Toast.LENGTH_SHORT).show()
+                }
+                location.isEmpty() -> {
+                    Toast.makeText(this, "Lokasi harus diisi", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                }
+            }
+        }
     }
 
     private fun getMyLocation() {

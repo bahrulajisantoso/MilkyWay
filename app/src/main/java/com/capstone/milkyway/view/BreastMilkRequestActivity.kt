@@ -9,19 +9,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.capstone.milkyway.R
-import com.capstone.milkyway.databinding.ActivityNeedBreastMilkBinding
+import com.capstone.milkyway.databinding.ActivityBreastMilkRequestBinding
 import com.capstone.milkyway.getAddressName
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
-class NeedBreastMilkActivity : AppCompatActivity() {
+class BreastMilkRequestActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityNeedBreastMilkBinding
+    private lateinit var binding: ActivityBreastMilkRequestBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNeedBreastMilkBinding.inflate(layoutInflater)
+        binding = ActivityBreastMilkRequestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()
@@ -30,7 +30,33 @@ class NeedBreastMilkActivity : AppCompatActivity() {
 
         binding.locationButton.setOnClickListener { getMyLocation() }
 
+        setupAction()
         dropDown()
+    }
+
+    private fun setupAction() {
+        binding.saveButton.setOnClickListener {
+            val name = binding.nameEditText.text.toString()
+            val age = binding.ageEditText.text.toString()
+            val religion = binding.autoCompleteTextView.text.toString()
+            val location = binding.locationTextView.toString()
+            when {
+                name.isEmpty() -> {
+                    binding.nameEditText.error = "Nama harus diisi"
+                }
+                age.isEmpty() -> {
+                    binding.ageEditText.error = "Umur harus diisi"
+                }
+                religion.isEmpty() -> {
+                    Toast.makeText(this, "Agama harus diisi", Toast.LENGTH_SHORT).show()
+                }
+                location.isEmpty() -> {
+                    Toast.makeText(this, "Lokasi harus diisi", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                }
+            }
+        }
     }
 
     private fun getMyLocation() {
@@ -50,7 +76,7 @@ class NeedBreastMilkActivity : AppCompatActivity() {
         }
         fusedLocationClient.lastLocation.addOnSuccessListener {
             if (it != null) {
-                val address = getAddressName(this@NeedBreastMilkActivity, it.latitude, it.longitude)
+                val address = getAddressName(this@BreastMilkRequestActivity, it.latitude, it.longitude)
                 binding.currentLocTextView.text = address
             }
         }
@@ -70,7 +96,7 @@ class NeedBreastMilkActivity : AppCompatActivity() {
 
         autocomplete.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
-                Toast.makeText(this@NeedBreastMilkActivity, religions[position], Toast.LENGTH_SHORT)
+                Toast.makeText(this@BreastMilkRequestActivity, religions[position], Toast.LENGTH_SHORT)
                     .show()
             }
     }
