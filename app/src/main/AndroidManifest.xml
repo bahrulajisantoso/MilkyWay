@@ -28,7 +28,7 @@
             android:name=".view.BabyCareActivity"
             android:exported="false" />
         <activity
-            android:name=".view.NeedBreastMilkActivity"
+            android:name=".view.BreastMilkRequestActivity"
             android:exported="false" />
         <activity
             android:name=".auth.RegisterActivity"

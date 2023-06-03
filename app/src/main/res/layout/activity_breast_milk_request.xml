@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_4"
-    tools:context=".view.NeedBreastMilkActivity">
+    tools:context=".view.BreastMilkRequestActivity">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -120,7 +120,7 @@
     <TextView
         android:id="@+id/currentLocTextView"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="56dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/form_input"
