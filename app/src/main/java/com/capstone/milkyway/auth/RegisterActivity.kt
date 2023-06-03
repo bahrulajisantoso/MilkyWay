@@ -13,6 +13,7 @@ import com.capstone.milkyway.databinding.ActivityRegisterBinding
 import com.capstone.milkyway.hideLoading
 import com.capstone.milkyway.showLoading
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -36,18 +37,6 @@ class RegisterActivity : AppCompatActivity() {
         playAnimation()
 
     }
-
-//    private fun setupView() {
-//        @Suppress("DEPRECATION")
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            window.insetsController?.hide(WindowInsets.Type.statusBars())
-//        } else {
-//            window.setFlags(
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN
-//            )
-//        }
-//    }
 
     private fun setupAction() {
         binding.registerButton.setOnClickListener {
@@ -75,13 +64,19 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
+                    Toast.makeText(applicationContext, "Register sukses", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 } else {
-                    Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    try {
+                        throw it.exception!!
+                    } catch (e: FirebaseAuthUserCollisionException) {
+                        // email already in use
+                        Toast.makeText(applicationContext, "Email sudah digunakan", Toast.LENGTH_SHORT).show()
+                    }
+                    hideLoading(binding.progressBar)
                 }
             }
-        hideLoading(binding.progressBar)
     }
 
     private fun playAnimation() {
@@ -89,12 +84,8 @@ class RegisterActivity : AppCompatActivity() {
         val title =
             ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
                 .setDuration(500)
-        val emailTextView =
-            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(500)
         val emailEditText =
             ObjectAnimator.ofFloat(binding.emailEditText, View.ALPHA, 1f).setDuration(500)
-        val passwordTextView =
-            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(500)
         val passwordEditText =
             ObjectAnimator.ofFloat(binding.passwordEditText, View.ALPHA, 1f).setDuration(500)
         val accountTextView =
@@ -106,9 +97,7 @@ class RegisterActivity : AppCompatActivity() {
         AnimatorSet().apply {
             playSequentially(
                 title,
-                emailTextView,
                 emailEditText,
-                passwordTextView,
                 passwordEditText,
                 accountTextView,
                 signup

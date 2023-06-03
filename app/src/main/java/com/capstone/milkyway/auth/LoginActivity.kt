@@ -62,10 +62,15 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
+                    Toast.makeText(this, "Login sukses", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 } else {
-                    Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Login gagal\nPastikan email dan password benar",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     hideLoading(binding.progressBar)
                 }
             }
@@ -80,12 +85,8 @@ class LoginActivity : AppCompatActivity() {
 
         val title =
             ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
-        val emailTextView =
-            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(500)
         val emailEditText =
             ObjectAnimator.ofFloat(binding.emailEditText, View.ALPHA, 1f).setDuration(500)
-        val passwordTextView =
-            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(500)
         val passwordEditText =
             ObjectAnimator.ofFloat(binding.passwordEditText, View.ALPHA, 1f)
                 .setDuration(500)
@@ -97,9 +98,7 @@ class LoginActivity : AppCompatActivity() {
         AnimatorSet().apply {
             playSequentially(
                 title,
-                emailTextView,
                 emailEditText,
-                passwordTextView,
                 passwordEditText,
                 accountTextView,
                 login
