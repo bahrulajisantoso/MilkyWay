@@ -51,6 +51,19 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
+    // maps
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    // gson converter
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    // logging interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+    // activity KTX
+    implementation "androidx.activity:activity-ktx:1.6.1"
+    // fragment KTX
+    implementation "androidx.fragment:fragment-ktx:1.5.5"
 }
