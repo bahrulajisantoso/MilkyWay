@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="30dp"
-        android:text="@string/need"
+        android:text="@string/request"
         android:textColor="@color/color_1"
         android:textSize="20sp"
         android:textStyle="bold"
