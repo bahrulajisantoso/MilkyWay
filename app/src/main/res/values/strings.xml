@@ -24,10 +24,15 @@
     <string name="religion">Agama</string>
     <string name="location">Lokasi</string>
     <string name="current_location">Lokasi Saat Ini</string>
-    <string name="save">Simpan</string>
+    <string name="submit">Submit</string>
     <string name="recommendation">Rekomendasi</string>
     <string name="body_weight">Berat Badan</string>
     <string name="result">Hasil</string>
+    <string name="phone">Nomor HP</string>
+    <string name="dietary">Dietary</string>
+    <string name="blood_type">Gol Darah</string>
+    <string name="health">Kesehatan</string>
+    <string name="smoking">Merokok</string>
 
     <string-array name="religions">
         <item>Islam</item>
