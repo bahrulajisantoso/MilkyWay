@@ -4,15 +4,15 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.capstone.milkyway.MainActivity
-import com.capstone.milkyway.R
+import com.capstone.milkyway.*
 import com.capstone.milkyway.databinding.ActivityLoginBinding
-import com.capstone.milkyway.hideLoading
-import com.capstone.milkyway.showLoading
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.math.log
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -62,9 +62,22 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
+                    auth.currentUser?.getIdToken(true)?.addOnCompleteListener { task ->
+                        if (it.isSuccessful) {
+                            val idToken: String = task.result?.token.toString()
+                            val userId = auth.currentUser?.uid.toString()
+
+                            val pref = UserPreference(this@LoginActivity)
+                            pref.setUser(userId, idToken)
+                        } else {
+                            Log.d("Error", task.exception.toString())
+                        }
+                    }
+
                     Toast.makeText(this, "Login sukses", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    finish()
                 } else {
                     Toast.makeText(
                         this,
@@ -112,6 +125,7 @@ class LoginActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            finish()
         }
     }
 }
