@@ -74,7 +74,7 @@ class EmailEditText : AppCompatEditText {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         context.apply {
-            setTextColor(ContextCompat.getColor(this, R.color.gray))
+            setTextColor(ContextCompat.getColor(this, R.color.color_1))
             hint = context.getString(R.string.email)
             textSize = 16f
             setHintTextColor(ContextCompat.getColor(this, R.color.gray))
