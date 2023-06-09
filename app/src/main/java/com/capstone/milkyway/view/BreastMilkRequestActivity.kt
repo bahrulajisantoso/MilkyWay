@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -31,15 +32,20 @@ class BreastMilkRequestActivity : AppCompatActivity() {
         binding.locationButton.setOnClickListener { getMyLocation() }
 
         setupAction()
-        dropDown()
+        dropdownMenu()
     }
 
     private fun setupAction() {
-        binding.saveButton.setOnClickListener {
+        binding.submitButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()
             val age = binding.ageEditText.text.toString()
-            val religion = binding.autoCompleteTextView.text.toString()
-            val location = binding.locationTextView.toString()
+            val religion = binding.religion.text.toString()
+            val phone = binding.phoneEditText.toString()
+            val bloodType = binding.blood.toString()
+            val dietary = binding.dietary.toString()
+            val health = binding.health.toString()
+            val isSmoking = binding.smoking.toString()
+            val location = binding.locationEditText.toString()
             when {
                 name.isEmpty() -> {
                     binding.nameEditText.error = "Nama harus diisi"
@@ -50,8 +56,23 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                 religion.isEmpty() -> {
                     Toast.makeText(this, "Agama harus diisi", Toast.LENGTH_SHORT).show()
                 }
+                phone.isEmpty() -> {
+                    binding.phoneEditText.error = "Telephone harus diisi"
+                }
+                bloodType.isEmpty() -> {
+                    Toast.makeText(this, "Gol Darah harus diisi", Toast.LENGTH_SHORT).show()
+                }
+                dietary.isEmpty() -> {
+                    Toast.makeText(this, "Dietary harus diisi", Toast.LENGTH_SHORT).show()
+                }
+                health.isEmpty() -> {
+                    Toast.makeText(this, "Sehat harus diisi", Toast.LENGTH_SHORT).show()
+                }
+                isSmoking.isEmpty() -> {
+                    Toast.makeText(this, "Merokok harus diisi", Toast.LENGTH_SHORT).show()
+                }
                 location.isEmpty() -> {
-                    Toast.makeText(this, "Lokasi harus diisi", Toast.LENGTH_SHORT).show()
+                    binding.locationEditText.error = "Lokasi harus diisi"
                 }
                 else -> {
                 }
@@ -76,8 +97,9 @@ class BreastMilkRequestActivity : AppCompatActivity() {
         }
         fusedLocationClient.lastLocation.addOnSuccessListener {
             if (it != null) {
-                val address = getAddressName(this@BreastMilkRequestActivity, it.latitude, it.longitude)
-                binding.currentLocTextView.text = address
+                val address =
+                    getAddressName(this@BreastMilkRequestActivity, it.latitude, it.longitude)
+                binding.locationEditText.setText(address)
             }
         }
             .addOnFailureListener {
@@ -88,18 +110,32 @@ class BreastMilkRequestActivity : AppCompatActivity() {
             }
     }
 
-    private fun dropDown() {
-        val religions = resources.getStringArray(R.array.religions)
-        val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, religions)
-        val autocomplete = binding.autoCompleteTextView
-        autocomplete.setAdapter(arrayAdapter)
+    private fun setDropdown(array: Array<String>, autoCompleteTextView: AutoCompleteTextView) {
+        val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, array)
+        autoCompleteTextView.setAdapter(arrayAdapter)
 
-        autocomplete.onItemClickListener =
+        autoCompleteTextView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
-                Toast.makeText(this@BreastMilkRequestActivity, religions[position], Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@BreastMilkRequestActivity,
+                    array[position],
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
     }
+
+    private fun dropdownMenu() {
+        binding.apply {
+            setDropdown(resources.getStringArray(R.array.religions), religion)
+            setDropdown(resources.getStringArray(R.array.bloodTypes), blood)
+            setDropdown(resources.getStringArray(R.array.dietaries), dietary)
+            setDropdown(resources.getStringArray(R.array.healths), health)
+            setDropdown(resources.getStringArray(R.array.isSmokings), smoking)
+        }
+
+    }
+
 
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 100

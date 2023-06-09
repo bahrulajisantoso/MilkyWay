@@ -35,11 +35,11 @@ class BreastMilkDonationActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        binding.saveButton.setOnClickListener {
+        binding.submitButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()
             val age = binding.ageEditText.text.toString()
-            val religion = binding.autoCompleteTextView.text.toString()
-            val location = binding.locationTextView.toString()
+            val religion = binding.religion.text.toString()
+            val location = binding.locationEditText.toString()
             when {
                 name.isEmpty() -> {
                     binding.nameEditText.error = "Nama harus diisi"
@@ -78,7 +78,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
             if (it != null) {
                 val address =
                     getAddressName(this@BreastMilkDonationActivity, it.latitude, it.longitude)
-                binding.currentLocTextView.text = address
+                binding.locationEditText.setText(address)
             }
         }
             .addOnFailureListener {
@@ -92,7 +92,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
     private fun dropDown() {
         val religions = resources.getStringArray(R.array.religions)
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, religions)
-        val autocomplete = binding.autoCompleteTextView
+        val autocomplete = binding.religion
         autocomplete.setAdapter(arrayAdapter)
 
         autocomplete.onItemClickListener =
