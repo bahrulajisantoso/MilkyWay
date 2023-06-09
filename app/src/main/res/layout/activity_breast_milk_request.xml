@@ -31,7 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-            tools:ignore="Autofill,SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/ageTextView"
@@ -89,65 +89,82 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneEditText" />
 
-        <EditText
-            android:id="@+id/bloodEditText"
-            style="@style/FormInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bloodTextInputLayout"
+            style="@style/LayoutDropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bloodTextView"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@id/bloodTextView">
+
+            <AutoCompleteTextView
+                android:id="@+id/blood"
+                style="@style/Dropdown" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/dietaryTextView"
             style="@style/TitleFormInput"
             android:text="@string/dietary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bloodEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/bloodTextInputLayout" />
 
-        <EditText
-            android:id="@+id/dietaryEditText"
-            style="@style/FormInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dietaryTextInputLayout"
+            style="@style/LayoutDropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dietaryTextView"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@id/dietaryTextView">
+
+            <AutoCompleteTextView
+                android:id="@+id/dietary"
+                style="@style/Dropdown" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/healthTextView"
             style="@style/TitleFormInput"
-            android:text="@string/health"
+            android:text="@string/blood_type"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dietaryEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/dietaryTextInputLayout" />
 
-        <EditText
-            android:id="@+id/healthEditText"
-            style="@style/FormInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/healthTextInputLayout"
+            style="@style/LayoutDropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/healthTextView"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@id/healthTextView">
+
+            <AutoCompleteTextView
+                android:id="@+id/health"
+                style="@style/Dropdown" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/smokingTextView"
             style="@style/TitleFormInput"
             android:text="@string/smoking"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/healthEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/healthTextInputLayout" />
 
-        <EditText
-            android:id="@+id/smokingEditText"
-            style="@style/FormInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/smokingTextInputLayout"
+            style="@style/LayoutDropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/smokingTextView"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toBottomOf="@id/smokingTextView">
+
+            <AutoCompleteTextView
+                android:id="@+id/smoking"
+                style="@style/Dropdown" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/locationTextView"
             style="@style/TitleFormInput"
             android:text="@string/location"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/smokingEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/smokingTextInputLayout" />
 
         <EditText
             android:id="@+id/locationEditText"
