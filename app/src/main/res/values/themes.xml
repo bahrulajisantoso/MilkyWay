@@ -13,4 +13,79 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_1</item>
+    </style>
+
+    <style name="TitleFormInput">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_1</item>
+    </style>
+
+    <style name="FormInput">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:background">@drawable/form_input</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:textColor">@color/color_1</item>
+    </style>
+
+    <style name="FormInputLocation">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">84dp</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:background">@drawable/form_input</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:textColor">@color/color_1</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="backgroundTint">@color/color_2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LayoutDropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:background">@drawable/form_input</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintAnimationEnabled">false</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="Dropdown">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:inputType">none</item>
+        <item name="android:textColor">@color/color_1</item>
+    </style>
 </resources>
