@@ -67,6 +67,7 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Register sukses", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    finish()
                 } else {
                     try {
                         throw it.exception!!
@@ -111,6 +112,7 @@ class RegisterActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            finish()
         }
     }
 }
