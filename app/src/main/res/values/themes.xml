@@ -25,7 +25,7 @@
     </style>
 
     <style name="TitleFormInput">
-        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginStart">32dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -35,7 +35,7 @@
     <style name="FormInput">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">50dp</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:paddingHorizontal">10dp</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:background">@drawable/form_input</item>
@@ -85,7 +85,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start|center_vertical</item>
         <item name="android:inputType">none</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/color_1</item>
     </style>
 </resources>

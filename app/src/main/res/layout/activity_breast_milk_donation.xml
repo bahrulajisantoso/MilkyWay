@@ -43,6 +43,7 @@
         <EditText
             android:id="@+id/ageEditText"
             style="@style/FormInput"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ageTextView"
@@ -77,6 +78,7 @@
         <EditText
             android:id="@+id/phoneEditText"
             style="@style/FormInput"
+            android:inputType="number|phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneTextView"
@@ -123,7 +125,7 @@
         <TextView
             android:id="@+id/healthTextView"
             style="@style/TitleFormInput"
-            android:text="@string/blood_type"
+            android:text="@string/health"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dietaryTextInputLayout" />
 
