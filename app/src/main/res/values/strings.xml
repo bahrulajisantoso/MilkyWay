@@ -28,11 +28,16 @@
     <string name="recommendation">Rekomendasi</string>
     <string name="body_weight">Berat Badan</string>
     <string name="result">Hasil</string>
-    <string name="phone">Nomor HP</string>
+    <string name="phone">Telephone</string>
     <string name="dietary">Dietary</string>
     <string name="blood_type">Gol Darah</string>
-    <string name="health">Kesehatan</string>
+    <string name="health">Sehat</string>
     <string name="smoking">Merokok</string>
+
+    <string name="start_point">Start Point</string>
+    <string name="start_running">Start Running</string>
+    <string name="stop_running">Stop Running</string>
+    <string name="route">Rute</string>
 
     <string-array name="religions">
         <item>Islam</item>
@@ -40,5 +45,31 @@
         <item>Katholik</item>
         <item>Hindhu</item>
         <item>Budha</item>
+        <item>Khonghucu</item>
+    </string-array>
+
+    <string-array name="bloodTypes">
+        <item>A</item>
+        <item>B</item>
+        <item>O</item>
+        <item>AB</item>
+    </string-array>
+
+    <string-array name="dietaries">
+        <item>Gluten-free</item>
+        <item>Lactose-free</item>
+        <item>Nut-free</item>
+        <item>Vegan</item>
+        <item>Egg-free</item>
+    </string-array>
+
+    <string-array name="healths">
+        <item>Ya</item>
+        <item>Tidak</item>
+    </string-array>
+
+    <string-array name="isSmokings">
+        <item>Ya</item>
+        <item>Tidak</item>
     </string-array>
 </resources>
