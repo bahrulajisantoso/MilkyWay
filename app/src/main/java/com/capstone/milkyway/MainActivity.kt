@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var pref: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = getString(R.string.home)
-
         auth = FirebaseAuth.getInstance()
+        pref = UserPreference(this@MainActivity)
 
         moveActivity()
 
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.logout -> {
                 auth.signOut()
+                pref.logOut()
                 startActivity(Intent(this@MainActivity, LoginActivity::class.java))
                 finish()
             }
@@ -53,10 +55,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, BreastMilkRequestActivity::class.java))
             }
             donationButton.setOnClickListener {
-                startActivity(Intent(this@MainActivity, BreastMilkDonationActivity::class.java))
+                startActivity(Intent(this@MainActivity, BreastMilkDonationListActivity::class.java))
             }
             careButton.setOnClickListener {
-                startActivity(Intent(this@MainActivity, BreastMilkDonationListActivity::class.java))
+                startActivity(Intent(this@MainActivity, BabyCareActivity::class.java))
             }
         }
     }
