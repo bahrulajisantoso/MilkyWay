@@ -22,6 +22,18 @@ data class PayloadItem(
 	@field:SerializedName("role")
 	val role: String,
 
+	@field:SerializedName("userId")
+	val userId: String,
+
+	@field:SerializedName("uuid")
+	val uuid: String,
+
+	@field:SerializedName("health_condition")
+	val healthCondition: String,
+
+	@field:SerializedName("religion")
+	val religion: String,
+
 	@field:SerializedName("phone")
 	val phone: String,
 
@@ -31,23 +43,20 @@ data class PayloadItem(
 	@field:SerializedName("insertedAt")
 	val insertedAt: String,
 
+	@field:SerializedName("is_smoke")
+	val isSmoke: String,
+
+	@field:SerializedName("blood_type")
+	val bloodType: String,
+
 	@field:SerializedName("name")
 	val name: String,
 
 	@field:SerializedName("id")
 	val id: Int,
 
-	@field:SerializedName("userId")
-	val userId: String,
-
-	@field:SerializedName("uuid")
-	val uuid: String,
-
 	@field:SerializedName("age")
 	val age: Int,
-
-	@field:SerializedName("religion")
-	val religion: String,
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
