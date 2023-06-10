@@ -24,10 +24,10 @@ class DonationListViewModel : ViewModel() {
     }
 
 
-    fun getAllDonors(bearer: String) {
+    fun getAllDonors(token: String) {
         _isLoading.value = true
         val client = ApiConfig.getApiService()
-            .getAllDonors(bearer = "Bearer $bearer")
+            .getAllDonors(bearer = "Bearer $token")
         client.enqueue(object : Callback<ResponseGetAllDonors> {
             override fun onResponse(
                 call: Call<ResponseGetAllDonors>,
