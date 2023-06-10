@@ -15,180 +15,135 @@
 
     <TextView
         android:id="@+id/titleNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
     <TextView
         android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="132dp"
         android:text="Siti Utami"
         app:layout_constraintStart_toEndOf="@+id/titleNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
     <TextView
         android:id="@+id/titleAgeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/age"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleNameTextView" />
 
     <TextView
         android:id="@+id/ageTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="132dp"
         android:text="30"
         app:layout_constraintStart_toEndOf="@+id/titleAgeTextView"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
     <TextView
         android:id="@+id/titleReligionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/religion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleAgeTextView" />
 
     <TextView
         android:id="@+id/religionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="120dp"
         android:text="Islam"
         app:layout_constraintStart_toEndOf="@+id/titleReligionTextView"
         app:layout_constraintTop_toBottomOf="@+id/ageTextView" />
 
     <TextView
         android:id="@+id/titlePhoneTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleReligionTextView" />
 
     <TextView
         android:id="@+id/phoneTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="96dp"
         android:text="085123123123"
         app:layout_constraintStart_toEndOf="@+id/titlePhoneTextView"
         app:layout_constraintTop_toBottomOf="@+id/religionTextView" />
 
     <TextView
         android:id="@+id/titleBloodTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/blood_type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titlePhoneTextView" />
 
     <TextView
         android:id="@+id/bloodTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="100dp"
         android:text="A"
         app:layout_constraintStart_toEndOf="@+id/titleBloodTextView"
         app:layout_constraintTop_toBottomOf="@+id/phoneTextView" />
 
     <TextView
         android:id="@+id/titleDietaryTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/dietary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleBloodTextView" />
 
     <TextView
         android:id="@+id/dietaryTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="120dp"
         android:text="Vegan"
         app:layout_constraintStart_toEndOf="@+id/titleDietaryTextView"
         app:layout_constraintTop_toBottomOf="@+id/bloodTextView" />
 
     <TextView
         android:id="@+id/titleHealthTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/health"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleDietaryTextView" />
 
     <TextView
         android:id="@+id/healthTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="132dp"
         android:text="Ya"
         app:layout_constraintStart_toEndOf="@+id/titleHealthTextView"
         app:layout_constraintTop_toBottomOf="@+id/dietaryTextView" />
 
     <TextView
         android:id="@+id/titleSmokingTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/smoking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleHealthTextView" />
 
     <TextView
         android:id="@+id/smokingTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="108dp"
         android:text="Tidak"
         app:layout_constraintStart_toEndOf="@+id/titleSmokingTextView"
         app:layout_constraintTop_toBottomOf="@+id/healthTextView" />
 
     <TextView
         android:id="@+id/titleLocationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        style="@style/TitleResult"
         android:text="@string/location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleSmokingTextView" />
 
     <TextView
         android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
+        style="@style/TextResult"
+        android:layout_marginStart="124dp"
         android:text="Jl. Merdeka"
         app:layout_constraintStart_toEndOf="@+id/titleLocationTextView"
         app:layout_constraintTop_toBottomOf="@+id/smokingTextView" />
