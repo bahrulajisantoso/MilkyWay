@@ -1,8 +1,8 @@
 package com.capstone.milkyway.api
 
 import com.capstone.milkyway.response.ResponseAddDonor
+import com.capstone.milkyway.response.ResponseDelete
 import com.capstone.milkyway.response.ResponseGetAllDonors
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -19,7 +19,7 @@ interface ApiService {
         @Header("Authorization") bearer: String,
         @Field("userId") userId: String,
         @Field("name") name: String,
-        @Field("age") age: String,
+        @Field("age") age: Int,
         @Field("phone") phone: String,
         @Field("religion") religion: String,
         @Field("health_condition") healthCondition: String,
@@ -29,4 +29,10 @@ interface ApiService {
         @Field("address") address: String,
         @Field("role") role: String
     ): Call<ResponseAddDonor>
+
+    @POST("donors{uuid}")
+    fun deleteDonor(
+        @Header("Authorization") bearer: String,
+        @Path("uuid") uuid: String
+    ): Call<ResponseDelete>
 }
