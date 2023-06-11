@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -16,13 +15,9 @@ import com.capstone.milkyway.R
 import com.capstone.milkyway.UserPreference
 import com.capstone.milkyway.databinding.ActivityBreastMilkDonationBinding
 import com.capstone.milkyway.getAddressName
-import com.capstone.milkyway.viewmodel.DonationListViewModel
 import com.capstone.milkyway.viewmodel.DonationViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 
 class BreastMilkDonationActivity : AppCompatActivity() {
 
@@ -48,78 +43,72 @@ class BreastMilkDonationActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.submitButton.setOnClickListener {
-            val nameText = binding.nameEditText.text.toString()
-            val ageText = binding.ageEditText.text.toString()
-            val religionText = binding.religion.text.toString()
-            val phoneText = binding.phoneEditText.toString()
-            val bloodTypeText = binding.blood.text.toString()
-            val dietaryText = binding.dietary.text.toString()
-            val healthText = binding.health.text.toString()
-            val isSmokingText = binding.smoking.text.toString()
-            val locationText = binding.locationEditText.toString()
+            val name = binding.nameEditText.text.toString()
+            val age = binding.ageEditText.text.toString()
+            val religion = binding.religion.text.toString()
+            val phone = binding.phoneEditText.toString()
+            val bloodType = binding.blood.text.toString()
+            val dietary = binding.dietary.text.toString()
+            val health = binding.health.text.toString()
+            val isSmoking = binding.smoking.text.toString()
+            val location = binding.locationEditText.toString()
             when {
-                nameText.isEmpty() -> {
+                name.isEmpty() -> {
                     binding.nameEditText.error = "Nama harus diisi"
                 }
-                ageText.isEmpty() -> {
+                age.isEmpty() -> {
                     binding.ageEditText.error = "Umur harus diisi"
                 }
-                religionText.isEmpty() -> {
+                religion.isEmpty() -> {
                     Toast.makeText(this, "Agama harus diisi", Toast.LENGTH_SHORT).show()
                 }
-                phoneText.isEmpty() -> {
+                phone.isEmpty() -> {
                     binding.phoneEditText.error = "Telephone harus diisi"
                 }
-                bloodTypeText.isEmpty() -> {
+                bloodType.isEmpty() -> {
                     Toast.makeText(this, "Gol Darah harus diisi", Toast.LENGTH_SHORT).show()
                 }
-                dietaryText.isEmpty() -> {
+                dietary.isEmpty() -> {
                     Toast.makeText(this, "Dietary harus diisi", Toast.LENGTH_SHORT).show()
                 }
-                healthText.isEmpty() -> {
+                health.isEmpty() -> {
                     Toast.makeText(this, "Sehat harus diisi", Toast.LENGTH_SHORT).show()
                 }
-                isSmokingText.isEmpty() -> {
+                isSmoking.isEmpty() -> {
                     Toast.makeText(this, "Merokok harus diisi", Toast.LENGTH_SHORT).show()
                 }
-                locationText.isEmpty() -> {
+                location.isEmpty() -> {
                     binding.locationEditText.error = "Lokasi harus diisi"
                 }
                 else -> {
-                    val name = nameText.toRequestBody("text/plain".toMediaType())
-                    val age = ageText.toRequestBody("text/plain".toMediaType())
-                    val phone = phoneText.toRequestBody("text/plain".toMediaType())
-                    val religion = religionText.toRequestBody("text/plain".toMediaType())
-                    val healthCondition = healthText.toRequestBody("text/plain".toMediaType())
-                    val isSmoking = isSmokingText.toRequestBody("text/plain".toMediaType())
-                    val bloodType = bloodTypeText.toRequestBody("text/plain".toMediaType())
-                    val dietary = dietaryText.toRequestBody("text/plain".toMediaType())
-                    val location = locationText.toRequestBody("text/plain".toMediaType())
-                    val userId = pref.getUserId().toRequestBody("text/plain".toMediaType())
-                    val role = getString(R.string.donor).toRequestBody("text/plain".toMediaType())
+                    val ageInt = age.toInt()
+                    val donor = getString(R.string.donor)
 
                     addDonation(
+                        token = pref.getIdToken(),
                         userId = pref.getUserId(),
-                        name = nameText,
-                        age = ageText,
-                        phone = phoneText,
-                        religion = religionText,
-                        healthCondition = healthText,
-                        isSmoking = isSmokingText,
-                        bloodType = bloodTypeText,
-                        dietary = dietaryText,
-                        address = locationText,
-                        role = "Donor"
+                        name = name,
+                        age = ageInt,
+                        phone = phone,
+                        religion = religion,
+                        healthCondition = health,
+                        isSmoking = isSmoking,
+                        bloodType = bloodType,
+                        dietary = dietary,
+                        address = location,
+                        role = donor
                     )
+
                 }
             }
         }
     }
 
     private fun addDonation(
+        token: String,
         userId: String,
         name: String,
-        age: String,
+        age: Int,
         phone: String,
         religion: String,
         healthCondition: String,
@@ -130,7 +119,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         role: String,
     ) {
         viewModel.addDonor(
-            pref.getIdToken(),
+            token = token,
             userId = userId,
             name = name,
             age = age,
@@ -146,16 +135,24 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         viewModel.error.observe(this) { error ->
             viewModel.message.observe(this) { message ->
                 if (!error) {
+                    Toast.makeText(
+                        this@BreastMilkDonationActivity,
+                        message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                     val intent =
-                        Intent(this@BreastMilkDonationActivity, DonationListViewModel::class.java)
+                        Intent(
+                            this@BreastMilkDonationActivity,
+                            BreastMilkDonationListActivity::class.java
+                        )
                     intent.flags =
                         Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
                     finish()
-                } else {
+                } else if (error) {
                     Toast.makeText(
                         this@BreastMilkDonationActivity,
-                        "Gagal",
+                        message,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -6,8 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.capstone.milkyway.api.ApiConfig
 import com.capstone.milkyway.response.ResponseAddDonor
-import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +24,7 @@ class DonationViewModel : ViewModel() {
         token: String,
         userId: String,
         name: String,
-        age: String,
+        age: Int,
         phone: String,
         religion: String,
         healthCondition: String,
@@ -51,7 +49,6 @@ class DonationViewModel : ViewModel() {
                 dietary = dietary,
                 address = address,
                 role = role
-
             )
         client.enqueue(object : Callback<ResponseAddDonor> {
             override fun onResponse(
