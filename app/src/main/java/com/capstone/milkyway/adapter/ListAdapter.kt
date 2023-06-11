@@ -9,6 +9,16 @@ import com.capstone.milkyway.response.PayloadItem
 class ListAdapter(private val listDonor: List<PayloadItem>) :
     RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
+    private lateinit var onItemClickCallbackEdit: OnItemClickCallbackEdit
+    private lateinit var onItemClickCallbackDelete: OnItemClickCallbackDelete
+
+    fun setOnItemClickCallbackEdit(onItemClickCallback: OnItemClickCallbackEdit) {
+        this.onItemClickCallbackEdit = onItemClickCallback
+    }
+
+    fun setOnItemClickCallbackDelete(onItemClickCallback: OnItemClickCallbackDelete) {
+        this.onItemClickCallbackDelete = onItemClickCallback
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
@@ -19,13 +29,21 @@ class ListAdapter(private val listDonor: List<PayloadItem>) :
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val donors = listDonor[position]
         holder.bind(donors)
+
+        holder.binding.edit.setOnClickListener {
+            onItemClickCallbackEdit.onItemClicked(donors)
+        }
+        holder.binding.delete.setOnClickListener {
+            onItemClickCallbackDelete.onItemClicked(donors)
+        }
     }
 
     override fun getItemCount(): Int = listDonor.size
 
 
-    class ListViewHolder(private val binding: ItemRowBinding) :
+    class ListViewHolder(val binding: ItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(donor: PayloadItem) {
             binding.nameTextView.text = donor.name
             binding.ageTextView.text = donor.age.toString()
@@ -38,5 +56,13 @@ class ListAdapter(private val listDonor: List<PayloadItem>) :
             binding.locationTextView.text = donor.address
 
         }
+    }
+
+    interface OnItemClickCallbackEdit {
+        fun onItemClicked(listDonor: PayloadItem)
+    }
+
+    interface OnItemClickCallbackDelete {
+        fun onItemClicked(listDonor: PayloadItem)
     }
 }
