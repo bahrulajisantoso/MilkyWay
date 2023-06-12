@@ -1,17 +1,21 @@
 package com.capstone.milkyway.view
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.capstone.milkyway.R
+import com.capstone.milkyway.UserPreference
 import com.capstone.milkyway.databinding.ActivityBreastMilkRequestBinding
 import com.capstone.milkyway.getAddressName
+import com.capstone.milkyway.viewmodel.RequestViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -19,6 +23,8 @@ class BreastMilkRequestActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBreastMilkRequestBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private val viewModel: RequestViewModel by viewModels()
+    private lateinit var pref: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +34,7 @@ class BreastMilkRequestActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        pref = UserPreference(this)
 
         binding.locationButton.setOnClickListener { getMyLocation() }
 
@@ -40,12 +47,12 @@ class BreastMilkRequestActivity : AppCompatActivity() {
             val name = binding.nameEditText.text.toString()
             val age = binding.ageEditText.text.toString()
             val religion = binding.religion.text.toString()
-            val phone = binding.phoneEditText.toString()
-            val bloodType = binding.blood.toString()
-            val dietary = binding.dietary.toString()
-            val health = binding.health.toString()
-            val isSmoking = binding.smoking.toString()
-            val location = binding.locationEditText.toString()
+            val phone = binding.phoneEditText.text.toString()
+            val bloodType = binding.blood.text.toString()
+            val dietary = binding.dietary.text.toString()
+            val health = binding.health.text.toString()
+            val isSmoking = binding.smoking.text.toString()
+            val location = binding.locationEditText.text.toString()
             when {
                 name.isEmpty() -> {
                     binding.nameEditText.error = "Nama harus diisi"
@@ -75,6 +82,79 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                     binding.locationEditText.error = "Lokasi harus diisi"
                 }
                 else -> {
+                    val ageInt = age.toInt()
+                    val phoneInt = age.toInt()
+                    val request = getString(R.string.requestRole)
+
+                    addRequest(
+                        token = pref.getIdToken(),
+                        userId = pref.getUserId(),
+                        name = name,
+                        age = ageInt,
+                        phone = phoneInt,
+                        religion = religion,
+                        healthCondition = health,
+                        isSmoking = isSmoking,
+                        bloodType = bloodType,
+                        dietary = dietary,
+                        address = location,
+                        role = request
+                    )
+                }
+            }
+        }
+    }
+
+    private fun addRequest(
+        token: String,
+        userId: String,
+        name: String,
+        age: Int,
+        phone: Int,
+        religion: String,
+        healthCondition: String,
+        isSmoking: String,
+        bloodType: String,
+        dietary: String,
+        address: String,
+        role: String,
+    ) {
+        viewModel.addRequest(
+            token = token,
+            userId = userId,
+            name = name,
+            age = age,
+            phone = phone,
+            religion = religion,
+            healthCondition = healthCondition,
+            isSmoking = isSmoking,
+            bloodType = bloodType,
+            dietary = dietary,
+            address = address,
+            role = role
+        )
+        viewModel.error.observe(this) { error ->
+            viewModel.message.observe(this) { message ->
+                if (!error) {
+                    Toast.makeText(
+                        this@BreastMilkRequestActivity,
+                        message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val intent =
+                        Intent(
+                            this@BreastMilkRequestActivity,
+                            BreastMilkDonationListActivity::class.java
+                        )
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                } else if (error) {
+                    Toast.makeText(
+                        this@BreastMilkRequestActivity,
+                        message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -113,16 +193,6 @@ class BreastMilkRequestActivity : AppCompatActivity() {
     private fun setDropdown(array: Array<String>, autoCompleteTextView: AutoCompleteTextView) {
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, array)
         autoCompleteTextView.setAdapter(arrayAdapter)
-
-        autoCompleteTextView.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, view, position, id ->
-                Toast.makeText(
-                    this@BreastMilkRequestActivity,
-                    array[position],
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
     }
 
     private fun dropdownMenu() {
@@ -133,9 +203,7 @@ class BreastMilkRequestActivity : AppCompatActivity() {
             setDropdown(resources.getStringArray(R.array.healths), health)
             setDropdown(resources.getStringArray(R.array.isSmokings), smoking)
         }
-
     }
-
 
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 100
