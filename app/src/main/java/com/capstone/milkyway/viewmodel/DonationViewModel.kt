@@ -25,7 +25,7 @@ class DonationViewModel : ViewModel() {
         userId: String,
         name: String,
         age: Int,
-        phone: String,
+        phone: Int,
         religion: String,
         healthCondition: String,
         isSmoking: String,
@@ -36,7 +36,7 @@ class DonationViewModel : ViewModel() {
     ) {
         _isLoading.value = true
         val client = ApiConfig.getApiService()
-            .addDonor(
+            .add(
                 bearer = "Bearer $token",
                 userId = userId,
                 name = name,
