@@ -7,10 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.milkyway.auth.LoginActivity
 import com.capstone.milkyway.databinding.ActivityMainBinding
-import com.capstone.milkyway.view.BabyCareActivity
-import com.capstone.milkyway.view.BreastMilkDonationActivity
-import com.capstone.milkyway.view.BreastMilkDonationListActivity
-import com.capstone.milkyway.view.BreastMilkRequestActivity
+import com.capstone.milkyway.view.*
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -58,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, BreastMilkDonationListActivity::class.java))
             }
             careButton.setOnClickListener {
-                startActivity(Intent(this@MainActivity, BabyCareActivity::class.java))
+                startActivity(Intent(this@MainActivity, RouteActivity::class.java))
             }
         }
     }
