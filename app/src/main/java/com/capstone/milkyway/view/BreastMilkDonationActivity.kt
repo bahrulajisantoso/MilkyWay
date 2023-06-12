@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
@@ -15,6 +14,7 @@ import com.capstone.milkyway.R
 import com.capstone.milkyway.UserPreference
 import com.capstone.milkyway.databinding.ActivityBreastMilkDonationBinding
 import com.capstone.milkyway.getAddressName
+import com.capstone.milkyway.loading
 import com.capstone.milkyway.viewmodel.DonationViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -46,12 +46,12 @@ class BreastMilkDonationActivity : AppCompatActivity() {
             val name = binding.nameEditText.text.toString()
             val age = binding.ageEditText.text.toString()
             val religion = binding.religion.text.toString()
-            val phone = binding.phoneEditText.toString()
+            val phone = binding.phoneEditText.text.toString()
             val bloodType = binding.blood.text.toString()
             val dietary = binding.dietary.text.toString()
             val health = binding.health.text.toString()
             val isSmoking = binding.smoking.text.toString()
-            val location = binding.locationEditText.toString()
+            val location = binding.locationEditText.text.toString()
             when {
                 name.isEmpty() -> {
                     binding.nameEditText.error = "Nama harus diisi"
@@ -82,14 +82,15 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                 }
                 else -> {
                     val ageInt = age.toInt()
-                    val donor = getString(R.string.donor)
+                    val phoneInt = age.toInt()
+                    val donor = getString(R.string.donorRole)
 
-                    addDonation(
+                    addDonor(
                         token = pref.getIdToken(),
                         userId = pref.getUserId(),
                         name = name,
                         age = ageInt,
-                        phone = phone,
+                        phone = phoneInt,
                         religion = religion,
                         healthCondition = health,
                         isSmoking = isSmoking,
@@ -104,12 +105,12 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         }
     }
 
-    private fun addDonation(
+    private fun addDonor(
         token: String,
         userId: String,
         name: String,
         age: Int,
-        phone: String,
+        phone: Int,
         religion: String,
         healthCondition: String,
         isSmoking: String,
@@ -145,11 +146,9 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                             this@BreastMilkDonationActivity,
                             BreastMilkDonationListActivity::class.java
                         )
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
-                    finish()
-                } else if (error) {
+                } else {
                     Toast.makeText(
                         this@BreastMilkDonationActivity,
                         message,
@@ -157,6 +156,10 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+        }
+
+        viewModel.isLoading.observe(this) {
+            loading(it, binding.progressBar)
         }
     }
 
@@ -193,16 +196,6 @@ class BreastMilkDonationActivity : AppCompatActivity() {
     private fun setDropdown(array: Array<String>, autoCompleteTextView: AutoCompleteTextView) {
         val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, array)
         autoCompleteTextView.setAdapter(arrayAdapter)
-
-        autoCompleteTextView.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, view, position, id ->
-                Toast.makeText(
-                    this@BreastMilkDonationActivity,
-                    array[position],
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
     }
 
     private fun dropdownMenu() {
@@ -213,7 +206,6 @@ class BreastMilkDonationActivity : AppCompatActivity() {
             setDropdown(resources.getStringArray(R.array.healths), health)
             setDropdown(resources.getStringArray(R.array.isSmokings), smoking)
         }
-
     }
 
 
