@@ -27,6 +27,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/donationButton"
             style="@style/ButtonMenu"
+            android:layout_marginTop="50dp"
             android:text="@string/donation"
             app:icon="@drawable/donation"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +37,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/careButton"
             style="@style/ButtonMenu"
+            android:layout_marginTop="50dp"
             android:backgroundTint="@color/color_2"
             android:text="@string/care"
             app:icon="@drawable/baby"
