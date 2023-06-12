@@ -17,6 +17,7 @@
     <string name="home">Home</string>
     <string name="menu">menu</string>
     <string name="request">Permintaan ASI</string>
+    <string name="requestRole">Request</string>
     <string name="donation">Donasi ASI</string>
     <string name="care">Perawatan Bayi</string>
     <string name="invalid_input">Data harus diisi</string>
@@ -33,12 +34,12 @@
     <string name="blood_type">Gol Darah</string>
     <string name="health">Sehat</string>
     <string name="smoking">Merokok</string>
-
     <string name="start_point">Start Point</string>
     <string name="start_running">Start Running</string>
     <string name="stop_running">Stop Running</string>
     <string name="route">Rute</string>
-    <string name="donor">Donor</string>
+    <string name="donorRole">Donor</string>
+
 
     <string-array name="religions">
         <item>Islam</item>
