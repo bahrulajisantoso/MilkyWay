@@ -18,7 +18,7 @@ fun hideLoading(progressBar: ProgressBar) {
     progressBar.visibility = View.GONE
 }
 
-fun getAddressName(context: Context, lat:Double, lon:Double): String? {
+fun getAddressName(context: Context, lat: Double, lon: Double): String? {
     var addressName: String? = null
     val geocoder = Geocoder(context, Locale.getDefault())
     try {
@@ -31,4 +31,8 @@ fun getAddressName(context: Context, lat:Double, lon:Double): String? {
         e.printStackTrace()
     }
     return addressName
+}
+
+fun loading(isLoading: Boolean, progressBar: ProgressBar) {
+    progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
 }
