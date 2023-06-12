@@ -47,7 +47,7 @@
     <style name="FormInputLocation">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">84dp</item>
-        <item name="android:inputType">textMultiLine</item>
+        <item name="android:inputType">text|textMultiLine</item>
         <item name="android:gravity">top</item>
         <item name="android:textSize">14sp</item>
         <item name="android:paddingHorizontal">10dp</item>
@@ -67,6 +67,8 @@
         <item name="android:layout_marginEnd">32dp</item>
         <item name="backgroundTint">@color/color_2</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="LayoutDropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
