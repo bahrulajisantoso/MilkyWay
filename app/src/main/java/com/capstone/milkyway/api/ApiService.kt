@@ -43,7 +43,7 @@ interface ApiService {
         @Header("Authorization") bearer: String,
         @Path("uuid") uuid: String,
         @Field("name") name: String,
-        @Field("phone") phone: String,
+        @Field("phone") phone: Int,
         @Field("address") address: String
     ): Call<ResponseUpdateDonor>
 }
