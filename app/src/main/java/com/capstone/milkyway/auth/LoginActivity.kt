@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.capstone.milkyway.*
 import com.capstone.milkyway.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.math.log
 
 
 class LoginActivity : AppCompatActivity() {

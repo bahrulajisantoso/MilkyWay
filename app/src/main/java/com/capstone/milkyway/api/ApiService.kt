@@ -1,7 +1,7 @@
 package com.capstone.milkyway.api
 
 import com.capstone.milkyway.response.ResponseAddDonor
-import com.capstone.milkyway.response.ResponseDelete
+import com.capstone.milkyway.response.ResponseDeleteDonor
 import com.capstone.milkyway.response.ResponseGetAllDonors
 import com.capstone.milkyway.response.ResponseUpdateDonor
 import retrofit2.Call
@@ -35,7 +35,7 @@ interface ApiService {
     fun deleteDonor(
         @Header("Authorization") bearer: String,
         @Path("uuid") uuid: String
-    ): Call<ResponseDelete>
+    ): Call<ResponseDeleteDonor>
 
     @FormUrlEncoded
     @PUT("donors/{uuid}")
