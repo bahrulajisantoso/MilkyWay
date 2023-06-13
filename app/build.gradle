@@ -5,18 +5,12 @@ plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
-def apikeyPropertiesFile = rootProject.file("apikey.properties")
-def apikeyProperties = new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
-
 android {
     namespace 'com.capstone.milkyway'
     compileSdk 33
 
     defaultConfig {
         applicationId "com.capstone.milkyway"
-        buildConfigField("String", "API_KEY_MAPS", apikeyProperties['API_KEY_MAPS'])
-        buildConfigField("String", "API_KEY_DIRECTIONS", apikeyProperties['API_KEY_DIRECTIONS'])
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -62,7 +56,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.maps.android:android-maps-utils:0.5'
-
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
