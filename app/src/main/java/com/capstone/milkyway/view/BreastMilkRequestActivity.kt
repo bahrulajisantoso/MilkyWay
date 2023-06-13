@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
@@ -15,6 +14,7 @@ import com.capstone.milkyway.R
 import com.capstone.milkyway.UserPreference
 import com.capstone.milkyway.databinding.ActivityBreastMilkRequestBinding
 import com.capstone.milkyway.getAddressName
+import com.capstone.milkyway.loading
 import com.capstone.milkyway.viewmodel.RequestViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -144,10 +144,9 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                     val intent =
                         Intent(
                             this@BreastMilkRequestActivity,
-                            BreastMilkDonationListActivity::class.java
+                            RecommendationActivity::class.java
                         )
-                    intent.flags =
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                 } else if (error) {
                     Toast.makeText(
@@ -157,6 +156,10 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+        }
+
+        viewModel.isLoading.observe(this) {
+            loading(it, binding.progressBar)
         }
     }
 
