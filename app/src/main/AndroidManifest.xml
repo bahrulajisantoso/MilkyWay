@@ -17,34 +17,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MilkyWay"
         tools:targetApi="31">
-        <activity
-            android:name=".view.BreastMilkDonationListActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/API_KEY_MAPS" />
+
         <activity
             android:name=".view.RecommendationActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".view.RouteActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="com.capstone.milkyway.BuildConfig.API_KEY_MAPS" />
-
         <activity
             android:name=".view.BreastMilkDonationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.BreastMilkDonationListActivity"
             android:exported="false" />
         <activity
             android:name=".view.BabyCareActivity"
@@ -61,9 +51,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".SplashScreen"
@@ -73,6 +60,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

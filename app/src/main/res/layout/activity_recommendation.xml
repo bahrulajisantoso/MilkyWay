@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/nameTextView"
         style="@style/TextResult"
-        android:layout_marginStart="132dp"
+        android:layout_marginStart="128dp"
         android:text="Siti Utami"
         app:layout_constraintStart_toEndOf="@+id/titleNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
@@ -53,7 +53,7 @@
     <TextView
         android:id="@+id/religionTextView"
         style="@style/TextResult"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="118dp"
         android:text="Islam"
         app:layout_constraintStart_toEndOf="@+id/titleReligionTextView"
         app:layout_constraintTop_toBottomOf="@+id/ageTextView" />
@@ -68,7 +68,7 @@
     <TextView
         android:id="@+id/phoneTextView"
         style="@style/TextResult"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="92dp"
         android:text="085123123123"
         app:layout_constraintStart_toEndOf="@+id/titlePhoneTextView"
         app:layout_constraintTop_toBottomOf="@+id/religionTextView" />
@@ -83,7 +83,7 @@
     <TextView
         android:id="@+id/bloodTextView"
         style="@style/TextResult"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="96dp"
         android:text="A"
         app:layout_constraintStart_toEndOf="@+id/titleBloodTextView"
         app:layout_constraintTop_toBottomOf="@+id/phoneTextView" />
@@ -98,7 +98,7 @@
     <TextView
         android:id="@+id/dietaryTextView"
         style="@style/TextResult"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="118dp"
         android:text="Vegan"
         app:layout_constraintStart_toEndOf="@+id/titleDietaryTextView"
         app:layout_constraintTop_toBottomOf="@+id/bloodTextView" />
@@ -113,7 +113,7 @@
     <TextView
         android:id="@+id/healthTextView"
         style="@style/TextResult"
-        android:layout_marginStart="132dp"
+        android:layout_marginStart="130dp"
         android:text="Ya"
         app:layout_constraintStart_toEndOf="@+id/titleHealthTextView"
         app:layout_constraintTop_toBottomOf="@+id/dietaryTextView" />
@@ -128,7 +128,7 @@
     <TextView
         android:id="@+id/smokingTextView"
         style="@style/TextResult"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="104dp"
         android:text="Tidak"
         app:layout_constraintStart_toEndOf="@+id/titleSmokingTextView"
         app:layout_constraintTop_toBottomOf="@+id/healthTextView" />
@@ -143,13 +143,13 @@
     <TextView
         android:id="@+id/locationTextView"
         style="@style/TextResult"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="122dp"
         android:text="Jl. Merdeka"
         app:layout_constraintStart_toEndOf="@+id/titleLocationTextView"
         app:layout_constraintTop_toBottomOf="@+id/smokingTextView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonRoute"
         style="@style/Button"
         android:text="@string/route"
         app:layout_constraintEnd_toEndOf="parent"
