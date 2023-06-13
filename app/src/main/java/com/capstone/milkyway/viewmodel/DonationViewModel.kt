@@ -6,12 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.capstone.milkyway.api.ApiConfig
 import com.capstone.milkyway.response.ResponseAddDonor
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DonationViewModel : ViewModel() {
-    private val _error = MutableLiveData(true)
+    private val _error = MutableLiveData<Boolean>()
     val error: LiveData<Boolean> = _error
 
     private val _message = MutableLiveData<String>()
@@ -63,9 +64,10 @@ class DonationViewModel : ViewModel() {
 
                 } else {
                     val errorBody = response.errorBody()?.string()
-//                    val errorMessage = JSONObject(errorBody.toString()).getString("message").toString()
+                    val errorMessage =
+                        JSONObject(errorBody.toString()).getString("message").toString()
                     _error.value = true
-                    _message.value = "Gagal"
+                    _message.value = errorMessage
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }

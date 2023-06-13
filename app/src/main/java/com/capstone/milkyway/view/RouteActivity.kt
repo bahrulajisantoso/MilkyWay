@@ -42,10 +42,13 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityRouteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val apiKey = getString(R.string.API_KEY_DIRECTIONS)
+        supportActionBar?.hide()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        val apiKey = getString(R.string.API_KEY_DIRECTIONS)
+
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
