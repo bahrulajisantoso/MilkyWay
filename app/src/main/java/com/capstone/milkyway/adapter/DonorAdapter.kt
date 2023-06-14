@@ -3,11 +3,11 @@ package com.capstone.milkyway.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.capstone.milkyway.databinding.ItemRowBinding
+import com.capstone.milkyway.databinding.ItemRowDonorBinding
 import com.capstone.milkyway.response.PayloadItem
 
-class ListAdapter(private val listDonor: List<PayloadItem>) :
-    RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
+class DonorAdapter(private val listDonor: List<PayloadItem>) :
+    RecyclerView.Adapter<DonorAdapter.ListViewHolder>() {
 
     private lateinit var onItemClickCallbackEdit: OnItemClickCallbackEdit
     private lateinit var onItemClickCallbackDelete: OnItemClickCallbackDelete
@@ -22,7 +22,7 @@ class ListAdapter(private val listDonor: List<PayloadItem>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
-            ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemRowDonorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
@@ -41,7 +41,7 @@ class ListAdapter(private val listDonor: List<PayloadItem>) :
     override fun getItemCount(): Int = listDonor.size
 
 
-    class ListViewHolder(val binding: ItemRowBinding) :
+    class ListViewHolder(val binding: ItemRowDonorBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(donor: PayloadItem) {
