@@ -11,7 +11,6 @@ import com.capstone.milkyway.adapter.ListAdapter
 import com.capstone.milkyway.databinding.ActivityBreastMilkDonationListBinding
 import com.capstone.milkyway.loading
 import com.capstone.milkyway.response.PayloadItem
-import com.capstone.milkyway.showLoading
 import com.capstone.milkyway.viewmodel.DonationListViewModel
 
 class BreastMilkDonationListActivity : AppCompatActivity() {
@@ -54,6 +53,21 @@ class BreastMilkDonationListActivity : AppCompatActivity() {
 
                 adapter.setOnItemClickCallbackEdit(object : ListAdapter.OnItemClickCallbackEdit {
                     override fun onItemClicked(listDonor: PayloadItem) {
+                        val intent = Intent(
+                            this@BreastMilkDonationListActivity,
+                            BreastMilkDonationActivity::class.java
+                        )
+                        intent.putExtra(BreastMilkDonationActivity.UUID, listDonor.uuid)
+                        intent.putExtra(BreastMilkDonationActivity.NAME, listDonor.name)
+                        intent.putExtra(BreastMilkDonationActivity.AGE, listDonor.age)
+                        intent.putExtra(BreastMilkDonationActivity.PHONE, listDonor.phone)
+                        intent.putExtra(BreastMilkDonationActivity.RELIGION, listDonor.religion)
+                        intent.putExtra(BreastMilkDonationActivity.HEALTH, listDonor.healthCondition)
+                        intent.putExtra(BreastMilkDonationActivity.SMOKING, listDonor.isSmoke)
+                        intent.putExtra(BreastMilkDonationActivity.BLOOD, listDonor.bloodType)
+                        intent.putExtra(BreastMilkDonationActivity.DIETARY, listDonor.dietary)
+                        intent.putExtra(BreastMilkDonationActivity.LOCATION, listDonor.address)
+                        startActivity(intent)
                     }
                 })
                 adapter.setOnItemClickCallbackDelete(object :
