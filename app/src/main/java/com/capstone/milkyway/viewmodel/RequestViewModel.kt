@@ -1,11 +1,11 @@
 package com.capstone.milkyway.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.capstone.milkyway.api.ApiConfig
 import com.capstone.milkyway.response.ResponseAddDonor
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,19 +60,18 @@ class RequestViewModel : ViewModel() {
                 if (response.isSuccessful && responseBody != null) {
                     _error.value = false
                     _message.value = responseBody.message
-
                 } else {
-//                    val errorBody = response.errorBody()?.string()
-//                    val errorMessage = JSONObject(errorBody.toString()).getString("message").toString()
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage =
+                        JSONObject(errorBody.toString()).getString("error").toString()
                     _error.value = true
-                    _message.value = "Gagal"
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    _message.value = errorMessage
                 }
             }
 
             override fun onFailure(call: Call<ResponseAddDonor>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+                _message.value = t.message
             }
         })
     }
