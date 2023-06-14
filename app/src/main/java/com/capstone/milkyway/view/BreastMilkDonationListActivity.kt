@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.capstone.milkyway.MainActivity
 import com.capstone.milkyway.UserPreference
 import com.capstone.milkyway.adapter.DonorAdapter
 import com.capstone.milkyway.databinding.ActivityBreastMilkDonationListBinding
@@ -52,7 +53,8 @@ class BreastMilkDonationListActivity : AppCompatActivity() {
             viewModel.error.observe(this) { error ->
                 if (!error) {
                     viewModel.donors.observe(this) { donors ->
-                        adapter = DonorAdapter(donors)
+                        adapter = DonorAdapter()
+                        adapter.setListDonors(donors)
                         binding.rvDonor.adapter = adapter
 
                         if (donors.isEmpty()) {
@@ -106,6 +108,12 @@ class BreastMilkDonationListActivity : AppCompatActivity() {
                                     setPositiveButton("Ya") { _, _ ->
                                         if (!error) {
                                             deleteDonor(listDonor.uuid)
+                                            startActivity(
+                                                Intent(
+                                                    this@BreastMilkDonationListActivity,
+                                                    MainActivity::class.java
+                                                )
+                                            )
                                             viewModel.message.observe(this@BreastMilkDonationListActivity) {
                                                 Toast.makeText(
                                                     this@BreastMilkDonationListActivity,

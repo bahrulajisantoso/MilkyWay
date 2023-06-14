@@ -2,12 +2,22 @@ package com.capstone.milkyway.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.milkyway.databinding.ItemRowDonorBinding
 import com.capstone.milkyway.response.PayloadItem
 
-class DonorAdapter(private val listDonor: List<PayloadItem>) :
-    RecyclerView.Adapter<DonorAdapter.ListViewHolder>() {
+class DonorAdapter : RecyclerView.Adapter<DonorAdapter.ListViewHolder>() {
+
+    private val listDonor = ArrayList<PayloadItem>()
+
+    fun setListDonors(listDonor: List<PayloadItem>) {
+        val diffCallback = DonorDiffCallback(this.listDonor, listDonor)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.listDonor.clear()
+        this.listDonor.addAll(listDonor)
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     private lateinit var onItemClickCallbackEdit: OnItemClickCallbackEdit
     private lateinit var onItemClickCallbackDelete: OnItemClickCallbackDelete
