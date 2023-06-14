@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.capstone.milkyway.api.ApiConfig
 import com.capstone.milkyway.response.ResponseAddDonor
+import com.capstone.milkyway.response.ResponseUpdateDonor
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -64,15 +65,63 @@ class DonationViewModel : ViewModel() {
 
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    val errorMessage =
-                        JSONObject(errorBody.toString()).getString("message").toString()
+                    if (errorBody != null) {
+                        val errorMessage =
+                            JSONObject(errorBody.toString()).getString("message").toString()
+                        _message.value = errorMessage
+
+                    } else {
+                        _message.value = "Gagal menghubungi server"
+                    }
                     _error.value = true
-                    _message.value = errorMessage
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<ResponseAddDonor>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    fun updateDonor(
+        token: String,
+        uuid: String,
+        name: String,
+        phone: Int,
+        address: String,
+    ) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService()
+            .updateDonor(
+                bearer = "Bearer $token",
+                uuid = uuid,
+                name = name,
+                phone = phone,
+                address = address,
+            )
+        client.enqueue(object : Callback<ResponseUpdateDonor> {
+            override fun onResponse(
+                call: Call<ResponseUpdateDonor>,
+                response: Response<ResponseUpdateDonor>
+            ) {
+                _isLoading.value = false
+                val responseBody = response.body()
+                val errorBody = response.errorBody()?.string()
+                if (errorBody != null) {
+                    val errorMessage =
+                        JSONObject(errorBody.toString()).getString("message").toString()
+                    _message.value = errorMessage
+
+                } else {
+                    _message.value = "Gagal menghubungi server"
+                }
+                _error.value = true
+                Log.e(TAG, "onFailure: ${response.message()}")
+            }
+
+            override fun onFailure(call: Call<ResponseUpdateDonor>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }
