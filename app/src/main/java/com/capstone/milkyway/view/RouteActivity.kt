@@ -49,18 +49,19 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val apiKey = getString(R.string.API_KEY_DIRECTIONS)
 
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        val locationIntent = intent.getStringExtra(LOCATION) ?: ""
 
         binding.btnStart.setOnClickListener {
             mapFragment.getMapAsync {
                 val originLocation = LatLng(originLatitude, originLongitude)
                 googleMap.addMarker(MarkerOptions().position(originLocation))
-                val destinationLocation = getLatLngFromAddress("Stasiun jember")
+                val destinationLocation = getLatLngFromAddress(locationIntent)
                 googleMap.addMarker(MarkerOptions().position(destinationLocation!!))
                 val url = getDirectionURL(originLocation, destinationLocation, apiKey)
                 getDirection(url)
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 16F))
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation, 14F))
             }
         }
     }
@@ -179,5 +180,9 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
                 "&sensor=false" +
                 "&mode=driving" +
                 "&key=$secret"
+    }
+
+    companion object {
+        const val LOCATION = "location"
     }
 }
