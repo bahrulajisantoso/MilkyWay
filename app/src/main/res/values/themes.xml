@@ -49,7 +49,7 @@
         <item name="android:layout_height">84dp</item>
         <item name="android:inputType">text|textMultiLine</item>
         <item name="android:gravity">top</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:paddingHorizontal">10dp</item>
         <item name="android:paddingVertical">10dp</item>
         <item name="android:drawablePadding">10dp</item>
