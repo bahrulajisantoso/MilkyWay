@@ -42,6 +42,42 @@ class BreastMilkDonationActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
+
+        val uuidIntent = intent.getStringExtra(UUID) ?: ""
+        val nameIntent = intent.getStringExtra(NAME) ?: ""
+        val ageIntent = intent.getIntExtra(AGE, 0).toString()
+        val religionIntent = intent.getStringExtra(RELIGION) ?: ""
+        val phoneIntent = intent.getStringExtra(PHONE) ?: ""
+        val bloodTypeIntent = intent.getStringExtra(BLOOD) ?: ""
+        val dietaryIntent = intent.getStringExtra(DIETARY) ?: ""
+        val healthIntent = intent.getStringExtra(HEALTH) ?: ""
+        val isSmokingIntent = intent.getStringExtra(SMOKING) ?: ""
+        val locationIntent = intent.getStringExtra(LOCATION) ?: ""
+
+        if (uuidIntent.isNotEmpty()
+            && nameIntent.isNotEmpty()
+            && ageIntent.isNotEmpty()
+            && religionIntent.isNotEmpty()
+            && phoneIntent.isNotEmpty()
+            && bloodTypeIntent.isNotEmpty()
+            && dietaryIntent.isNotEmpty()
+            && healthIntent.isNotEmpty()
+            && isSmokingIntent.isNotEmpty()
+            && locationIntent.isNotEmpty()
+        ) {
+            binding.apply {
+                nameEditText.setText(nameIntent)
+                ageEditText.setText(ageIntent)
+                religion.setText(religionIntent)
+                phoneEditText.setText(phoneIntent)
+                blood.setText(bloodTypeIntent)
+                dietary.setText(dietaryIntent)
+                health.setText(healthIntent)
+                smoking.setText(isSmokingIntent)
+                locationEditText.setText(locationIntent)
+            }
+        }
+
         binding.submitButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()
             val age = binding.ageEditText.text.toString()
@@ -81,6 +117,33 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                     binding.locationEditText.error = "Lokasi harus diisi"
                 }
                 else -> {
+
+                    if (uuidIntent.isNotEmpty()
+                        && nameIntent.isNotEmpty()
+                        && ageIntent.isNotEmpty()
+                        && religionIntent.isNotEmpty()
+                        && phoneIntent.isNotEmpty()
+                        && bloodTypeIntent.isNotEmpty()
+                        && dietaryIntent.isNotEmpty()
+                        && healthIntent.isNotEmpty()
+                        && isSmokingIntent.isNotEmpty()
+                        && locationIntent.isNotEmpty()
+                    ) {
+                        updateDonor(
+                            token = pref.getIdToken(),
+                            uuid = uuidIntent,
+                            name = name,
+                            age = age.toInt(),
+                            phone = phone.toInt(),
+                            religion = religion,
+                            healthCondition = health,
+                            isSmoking = isSmoking,
+                            bloodType = bloodType,
+                            dietary = dietary,
+                            address = location,
+                        )
+                    }
+
                     val ageInt = age.toInt()
                     val phoneInt = age.toInt()
                     val donor = getString(R.string.donorRole)
@@ -163,6 +226,56 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateDonor(
+        token: String,
+        uuid: String,
+        name: String,
+        age: Int,
+        phone: Int,
+        religion: String,
+        healthCondition: String,
+        isSmoking: String,
+        bloodType: String,
+        dietary: String,
+        address: String,
+    ) {
+        viewModel.updateDonor(
+            token = token,
+            uuid = uuid,
+            name = name,
+            phone = phone,
+            address = address,
+        )
+        viewModel.error.observe(this) { error ->
+            viewModel.message.observe(this) { message ->
+                if (!error) {
+                    Toast.makeText(
+                        this@BreastMilkDonationActivity,
+                        message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val intent =
+                        Intent(
+                            this@BreastMilkDonationActivity,
+                            BreastMilkDonationListActivity::class.java
+                        )
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        this@BreastMilkDonationActivity,
+                        message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        viewModel.isLoading.observe(this) {
+            loading(it, binding.progressBar)
+        }
+    }
+
     private fun getMyLocation() {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -211,5 +324,15 @@ class BreastMilkDonationActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_CODE_PERMISSIONS = 100
+        const val UUID = "uuid"
+        const val NAME = "name"
+        const val AGE = "age"
+        const val PHONE = "phone"
+        const val RELIGION = "religion"
+        const val HEALTH = "health"
+        const val SMOKING = "smoking"
+        const val BLOOD = "blood"
+        const val DIETARY = "dietary"
+        const val LOCATION = "location"
     }
 }
