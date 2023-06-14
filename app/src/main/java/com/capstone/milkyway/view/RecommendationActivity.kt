@@ -36,43 +36,81 @@ class RecommendationActivity : AppCompatActivity() {
     }
 
     private fun getAllRecommends() {
-        if (pref.getIdToken() != "") {
-            viewModel.getAllRecommend(
-                pref.getIdToken(),
-                age = 20,
-                dietary = "vegan",
-                religion = "islam",
-                health = "ya",
-                smoking = "ya",
-                blood = "A",
-                location = "Gambir, Jakarta"
-            )
-            viewModel.error.observe(this@RecommendationActivity) { error ->
-                viewModel.recommends.observe(this) { recommends ->
-                    if (!error && recommends.isNotEmpty()) {
-                        adapter = RecommendAdapter(recommends)
-                        binding.rvRecommend.adapter = adapter
-                        adapter.setOnItemClickCallbackRoute(object :
-                            RecommendAdapter.OnItemClickCallbackRoute {
-                            override fun onItemClicked(recommend: ResponseRecommendItem) {
-                                val intent =
-                                    Intent(this@RecommendationActivity, RouteActivity::class.java)
-                                intent.putExtra(RouteActivity.LOCATION, recommend.location)
-                                startActivity(intent)
+
+        val ageIntent = intent.getIntExtra(AGE, 0).toString()
+        val religionIntent = intent.getStringExtra(RELIGION) ?: ""
+        val bloodTypeIntent = intent.getStringExtra(BLOOD) ?: ""
+        val dietaryIntent = intent.getStringExtra(DIETARY) ?: ""
+        val healthIntent = intent.getStringExtra(HEALTH) ?: ""
+        val isSmokingIntent = intent.getStringExtra(SMOKING) ?: ""
+        val locationIntent = intent.getStringExtra(LOCATION) ?: ""
+
+        if (ageIntent.isNotEmpty()
+            && religionIntent.isNotEmpty()
+            && bloodTypeIntent.isNotEmpty()
+            && dietaryIntent.isNotEmpty()
+            && healthIntent.isNotEmpty()
+            && isSmokingIntent.isNotEmpty()
+            && locationIntent.isNotEmpty()
+        ) {
+            if (pref.getIdToken() != "") {
+                viewModel.getAllRecommend(
+                    pref.getIdToken(),
+                    age = 20,
+                    dietary = dietaryIntent,
+                    religion = religionIntent,
+                    health = healthIntent,
+                    smoking = isSmokingIntent,
+                    blood = bloodTypeIntent,
+                    location = locationIntent
+                )
+                viewModel.error.observe(this@RecommendationActivity) { error ->
+                    viewModel.message.observe(this) { message ->
+                        viewModel.recommends.observe(this) { recommends ->
+                            if (!error && recommends.isNotEmpty()) {
+                                adapter = RecommendAdapter(recommends)
+                                binding.rvRecommend.adapter = adapter
+                                adapter.setOnItemClickCallbackRoute(object :
+                                    RecommendAdapter.OnItemClickCallbackRoute {
+                                    override fun onItemClicked(recommend: ResponseRecommendItem) {
+                                        val intent =
+                                            Intent(
+                                                this@RecommendationActivity,
+                                                RouteActivity::class.java
+                                            )
+                                        intent.putExtra(RouteActivity.LOCATION, recommend.location)
+                                        startActivity(intent)
+                                    }
+                                })
+                            } else {
+                                Toast.makeText(
+                                    this@RecommendationActivity,
+                                    message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
-                        })
-                    } else {
-                        viewModel.message.observe(this) { message ->
-                            Toast.makeText(this@RecommendationActivity, message, Toast.LENGTH_SHORT)
-                                .show()
                         }
                     }
                 }
+            } else {
+                Toast.makeText(this@RecommendationActivity, "Failure", Toast.LENGTH_SHORT).show()
             }
+        } else {
+            Toast.makeText(this@RecommendationActivity, "Failure", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.isLoading.observe(this) {
             loading(it, binding.progressBar)
         }
+    }
+
+    companion object {
+        const val AGE = "age"
+        const val RELIGION = "religion"
+        const val HEALTH = "health"
+        const val SMOKING = "smoking"
+        const val BLOOD = "blood"
+        const val DIETARY = "dietary"
+        const val LOCATION = "location"
     }
 }

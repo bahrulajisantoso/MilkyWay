@@ -149,27 +149,26 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                             phone = phone.toInt(),
                             address = location,
                         )
+                    } else {
+                        val ageInt = age.toInt()
+                        val phoneInt = age.toInt()
+                        val donor = getString(R.string.donorRole)
+
+                        addDonor(
+                            token = pref.getIdToken(),
+                            userId = pref.getUserId(),
+                            name = name,
+                            age = ageInt,
+                            phone = phoneInt,
+                            religion = religion,
+                            healthCondition = health,
+                            isSmoking = isSmoking,
+                            bloodType = bloodType,
+                            dietary = dietary,
+                            address = location,
+                            role = donor
+                        )
                     }
-
-                    val ageInt = age.toInt()
-                    val phoneInt = age.toInt()
-                    val donor = getString(R.string.donorRole)
-
-                    addDonor(
-                        token = pref.getIdToken(),
-                        userId = pref.getUserId(),
-                        name = name,
-                        age = ageInt,
-                        phone = phoneInt,
-                        religion = religion,
-                        healthCondition = health,
-                        isSmoking = isSmoking,
-                        bloodType = bloodType,
-                        dietary = dietary,
-                        address = location,
-                        role = donor
-                    )
-
                 }
             }
         }

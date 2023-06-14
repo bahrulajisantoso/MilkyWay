@@ -146,6 +146,13 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                             this@BreastMilkRequestActivity,
                             RecommendationActivity::class.java
                         )
+                    intent.putExtra(RecommendationActivity.AGE, age)
+                    intent.putExtra(RecommendationActivity.RELIGION, religion)
+                    intent.putExtra(RecommendationActivity.BLOOD, bloodType)
+                    intent.putExtra(RecommendationActivity.HEALTH, healthCondition)
+                    intent.putExtra(RecommendationActivity.SMOKING, isSmoking)
+                    intent.putExtra(RecommendationActivity.DIETARY, dietary)
+                    intent.putExtra(RecommendationActivity.LOCATION, address)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                 } else if (error) {
