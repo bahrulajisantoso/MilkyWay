@@ -35,8 +35,7 @@
     <string name="health">Sehat</string>
     <string name="smoking">Merokok</string>
     <string name="start_point">Start Point</string>
-    <string name="start_running">Start Running</string>
-    <string name="stop_running">Stop Running</string>
+    <string name="start_running">Start</string>
     <string name="route">Rute</string>
     <string name="donorRole">Donor</string>
 
