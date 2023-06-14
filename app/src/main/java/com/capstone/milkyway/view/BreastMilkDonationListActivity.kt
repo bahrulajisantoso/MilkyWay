@@ -2,12 +2,12 @@ package com.capstone.milkyway.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.milkyway.UserPreference
-import com.capstone.milkyway.adapter.ListAdapter
+import com.capstone.milkyway.adapter.DonorAdapter
 import com.capstone.milkyway.databinding.ActivityBreastMilkDonationListBinding
 import com.capstone.milkyway.loading
 import com.capstone.milkyway.response.PayloadItem
@@ -18,7 +18,7 @@ class BreastMilkDonationListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBreastMilkDonationListBinding
     private val viewModel: DonationListViewModel by viewModels()
     private lateinit var pref: UserPreference
-    private lateinit var adapter: ListAdapter
+    private lateinit var adapter: DonorAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,10 +48,10 @@ class BreastMilkDonationListActivity : AppCompatActivity() {
         if (pref.getIdToken() != "") {
             viewModel.getAllDonors(pref.getIdToken())
             viewModel.donors.observe(this) {
-                adapter = ListAdapter(it)
+                adapter = DonorAdapter(it)
                 binding.rvDonor.adapter = adapter
 
-                adapter.setOnItemClickCallbackEdit(object : ListAdapter.OnItemClickCallbackEdit {
+                adapter.setOnItemClickCallbackEdit(object : DonorAdapter.OnItemClickCallbackEdit {
                     override fun onItemClicked(listDonor: PayloadItem) {
                         val intent = Intent(
                             this@BreastMilkDonationListActivity,
@@ -71,9 +71,18 @@ class BreastMilkDonationListActivity : AppCompatActivity() {
                     }
                 })
                 adapter.setOnItemClickCallbackDelete(object :
-                    ListAdapter.OnItemClickCallbackDelete {
+                    DonorAdapter.OnItemClickCallbackDelete {
                     override fun onItemClicked(listDonor: PayloadItem) {
-                        deleteDonor(listDonor.uuid)
+                        AlertDialog.Builder(this@BreastMilkDonationListActivity).apply {
+                            setTitle("Hapus")
+                            setMessage("Anda yakin ingin dihapus?")
+                            setPositiveButton("Ya") { _, _ ->
+                                deleteDonor(listDonor.uuid)
+                            }
+                            setNegativeButton("Tidak") { _, _ -> }
+                            create()
+                            show()
+                        }
                     }
                 })
             }
