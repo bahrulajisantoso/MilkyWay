@@ -65,22 +65,17 @@ class DonationViewModel : ViewModel() {
 
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    if (errorBody != null) {
-                        val errorMessage =
-                            JSONObject(errorBody.toString()).getString("message").toString()
-                        _message.value = errorMessage
-
-                    } else {
-                        _message.value = "Gagal menghubungi server"
-                    }
+                    val errorMessage =
+                        JSONObject(errorBody.toString()).getString("error").toString()
                     _error.value = true
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    _message.value = errorMessage
                 }
             }
 
             override fun onFailure(call: Call<ResponseAddDonor>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+                _error.value = true
+                _message.value = t.message
             }
         })
     }
@@ -108,22 +103,23 @@ class DonationViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 val responseBody = response.body()
-                val errorBody = response.errorBody()?.string()
-                if (errorBody != null) {
-                    val errorMessage =
-                        JSONObject(errorBody.toString()).getString("message").toString()
-                    _message.value = errorMessage
+                if (response.isSuccessful && responseBody != null) {
+                    _error.value = false
+                    _message.value = responseBody.message
 
                 } else {
-                    _message.value = "Gagal menghubungi server"
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage =
+                        JSONObject(errorBody.toString()).getString("error").toString()
+                    _error.value = true
+                    _message.value = errorMessage
                 }
-                _error.value = true
-                Log.e(TAG, "onFailure: ${response.message()}")
             }
 
             override fun onFailure(call: Call<ResponseUpdateDonor>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+                _error.value = true
+                _message.value = t.message
             }
         })
     }
