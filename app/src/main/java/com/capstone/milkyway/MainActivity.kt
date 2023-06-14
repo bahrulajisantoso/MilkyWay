@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, BreastMilkDonationListActivity::class.java))
             }
             careButton.setOnClickListener {
-                startActivity(Intent(this@MainActivity, RouteActivity::class.java))
+                startActivity(Intent(this@MainActivity, BabyCareActivity::class.java))
             }
         }
     }
