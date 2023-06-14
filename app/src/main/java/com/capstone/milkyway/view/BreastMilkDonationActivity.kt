@@ -75,6 +75,19 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                 health.setText(healthIntent)
                 smoking.setText(isSmokingIntent)
                 locationEditText.setText(locationIntent)
+
+                ageEditText.isEnabled = false
+                ageEditText.setTextColor(getColor(R.color.gray))
+                religionTextInputLayout.isEnabled = false
+                religion.setTextColor(getColor(R.color.gray))
+                bloodTextInputLayout.isEnabled = false
+                blood.setTextColor(getColor(R.color.gray))
+                dietaryTextInputLayout.isEnabled = false
+                dietary.setTextColor(getColor(R.color.gray))
+                healthTextInputLayout.isEnabled = false
+                health.setTextColor(getColor(R.color.gray))
+                smokingTextInputLayout.isEnabled = false
+                smoking.setTextColor(getColor(R.color.gray))
             }
         }
 
@@ -133,13 +146,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                             token = pref.getIdToken(),
                             uuid = uuidIntent,
                             name = name,
-                            age = age.toInt(),
                             phone = phone.toInt(),
-                            religion = religion,
-                            healthCondition = health,
-                            isSmoking = isSmoking,
-                            bloodType = bloodType,
-                            dietary = dietary,
                             address = location,
                         )
                     }
@@ -230,13 +237,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         token: String,
         uuid: String,
         name: String,
-        age: Int,
         phone: Int,
-        religion: String,
-        healthCondition: String,
-        isSmoking: String,
-        bloodType: String,
-        dietary: String,
         address: String,
     ) {
         viewModel.updateDonor(
