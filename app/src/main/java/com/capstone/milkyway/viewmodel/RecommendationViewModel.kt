@@ -1,6 +1,5 @@
 package com.capstone.milkyway.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,12 +14,14 @@ class RecommendationViewModel : ViewModel() {
     private val _recommends = MutableLiveData<List<ResponseRecommendItem>>()
     val recommends: LiveData<List<ResponseRecommendItem>> = _recommends
 
+    private val _message = MutableLiveData<String>()
+    val message: LiveData<String> = _message
+
+    private val _error = MutableLiveData<Boolean>()
+    val error: LiveData<Boolean> = _error
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-
-    companion object {
-        private val TAG = RecommendationViewModel::class.java.simpleName
-    }
 
     fun getAllRecommend(
         token: String,
@@ -51,17 +52,23 @@ class RecommendationViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful && response.body() != null) {
+                    _error.value = false
                     _recommends.value = response.body()
-                    Log.d(TAG, response.body().toString())
                 } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    _error.value = true
+                    _message.value = response.message()
                 }
             }
 
             override fun onFailure(call: Call<List<ResponseRecommendItem>>, t: Throwable) {
+                _error.value = true
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+                _message.value = t.message
             }
         })
+    }
+
+    companion object {
+        private val TAG = RecommendationViewModel::class.java.simpleName
     }
 }

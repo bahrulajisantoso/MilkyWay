@@ -2,6 +2,7 @@ package com.capstone.milkyway.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,18 +47,27 @@ class RecommendationActivity : AppCompatActivity() {
                 blood = "A",
                 location = "Gambir, Jakarta"
             )
-            viewModel.recommends.observe(this) {
-                adapter = RecommendAdapter(it)
-                binding.rvRecommend.adapter = adapter
-
-                adapter.setOnItemClickCallbackRoute(object :
-                    RecommendAdapter.OnItemClickCallbackRoute {
-                    override fun onItemClicked(recommend: ResponseRecommendItem) {
-                        val intent = Intent(this@RecommendationActivity, RouteActivity::class.java)
-                        intent.putExtra(RouteActivity.LOCATION, recommend.location)
-                        startActivity(intent)
+            viewModel.error.observe(this@RecommendationActivity) { error ->
+                viewModel.recommends.observe(this) { recommends ->
+                    if (!error && recommends.isNotEmpty()) {
+                        adapter = RecommendAdapter(recommends)
+                        binding.rvRecommend.adapter = adapter
+                        adapter.setOnItemClickCallbackRoute(object :
+                            RecommendAdapter.OnItemClickCallbackRoute {
+                            override fun onItemClicked(recommend: ResponseRecommendItem) {
+                                val intent =
+                                    Intent(this@RecommendationActivity, RouteActivity::class.java)
+                                intent.putExtra(RouteActivity.LOCATION, recommend.location)
+                                startActivity(intent)
+                            }
+                        })
+                    } else {
+                        viewModel.message.observe(this) { message ->
+                            Toast.makeText(this@RecommendationActivity, message, Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
-                })
+                }
             }
         }
 
