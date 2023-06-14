@@ -1,21 +1,18 @@
 package com.capstone.milkyway.api
 
-import com.capstone.milkyway.response.ResponseAddDonor
-import com.capstone.milkyway.response.ResponseDeleteDonor
-import com.capstone.milkyway.response.ResponseGetAllDonors
-import com.capstone.milkyway.response.ResponseUpdateDonor
+import com.capstone.milkyway.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("donors")
+    @GET("api/donors")
     fun getAllDonors(
         @Header("Authorization") bearer: String,
     ): Call<ResponseGetAllDonors>
 
     @FormUrlEncoded
-    @POST("donors")
+    @POST("api/donors")
     fun add(
         @Header("Authorization") bearer: String,
         @Field("userId") userId: String,
@@ -31,14 +28,14 @@ interface ApiService {
         @Field("role") role: String
     ): Call<ResponseAddDonor>
 
-    @DELETE("donors/{uuid}")
+    @DELETE("api/donors/{uuid}")
     fun deleteDonor(
         @Header("Authorization") bearer: String,
         @Path("uuid") uuid: String
     ): Call<ResponseDeleteDonor>
 
     @FormUrlEncoded
-    @PUT("donors/{uuid}")
+    @PUT("api/donors/{uuid}")
     fun updateDonor(
         @Header("Authorization") bearer: String,
         @Path("uuid") uuid: String,
@@ -46,4 +43,17 @@ interface ApiService {
         @Field("phone") phone: Int,
         @Field("address") address: String
     ): Call<ResponseUpdateDonor>
+
+    @FormUrlEncoded
+    @POST("model/recommend")
+    fun getAllRecommends(
+        @Header("Authorization") bearer: String,
+        @Field("Age") age: Int,
+        @Field("Religion") religion: String,
+        @Field("Health Condition") healthCondition: String,
+        @Field("is_smoke") isSmoking: String,
+        @Field("Blood Type") bloodType: String,
+        @Field("Dietary Restrictions") dietary: String,
+        @Field("Location") address: String,
+    ): Call<List<ResponseRecommendItem>>
 }
