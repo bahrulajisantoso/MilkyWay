@@ -65,9 +65,10 @@ class LoginActivity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             val idToken: String = task.result?.token.toString()
                             val userId = auth.currentUser?.uid.toString()
+                            val emailPref = auth.currentUser?.email.toString()
 
                             val pref = UserPreference(this@LoginActivity)
-                            pref.setUser(userId, idToken)
+                            pref.setUser(userId, idToken, emailPref)
                         } else {
                             Log.d("Error", task.exception.toString())
                         }
