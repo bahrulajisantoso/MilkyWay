@@ -146,5 +146,8 @@ Jika stres yang dirasakan sudah menganggu keseharian Anda, tidak ada salahnya be
 Saat ini sudah banyak klinik maupun rumah sakit yang menyediakan kelas bagi pasangan yang ingin belajar merawat bayi baru lahir. Selain mengikuti kelas, Anda juga bisa belajar secara daring atau membaca artikel maupun buku yang membahas cara merawat bayi baru lahir.
 
 \n\nDengan membekali diri, harapannya Anda dan pasangan bisa lebih siap dan tidak kaget dengan tugas baru sebagai orang tua. Jika masih memiliki pertanyaan seputar merawat bayi baru lahir, jangan ragu berkonsultasi dengan dokter anak untuk mendapatkan saran terbaik.</string>
-    <string name="Profile">profile</string>
+    <string name="profile">Profile</string>
+    <string name="form_donation">Form Donasi ASI</string>
+    <string name="form_request">Form Permintaan ASI</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/titleTextView"
             style="@style/Title"
-            android:text="@string/donation"
+            android:text="@string/form_donation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
