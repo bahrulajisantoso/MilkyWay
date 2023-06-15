@@ -83,7 +83,7 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                 }
                 else -> {
                     val ageInt = age.toInt()
-                    val phoneInt = age.toInt()
+                    val phoneInt = phone.toInt()
                     val request = getString(R.string.requestRole)
 
                     addRequest(
