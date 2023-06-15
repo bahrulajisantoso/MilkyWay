@@ -65,38 +65,26 @@ class RecommendationActivity : AppCompatActivity() {
                     location = locationIntent
                 )
                 viewModel.error.observe(this@RecommendationActivity) { error ->
-                    viewModel.message.observe(this) { message ->
-                        viewModel.recommends.observe(this) { recommends ->
-                            if (!error && recommends.isNotEmpty()) {
-                                adapter = RecommendAdapter(recommends)
-                                binding.rvRecommend.adapter = adapter
-                                adapter.setOnItemClickCallbackRoute(object :
-                                    RecommendAdapter.OnItemClickCallbackRoute {
-                                    override fun onItemClicked(recommend: ResponseRecommendItem) {
-                                        val intent =
-                                            Intent(
-                                                this@RecommendationActivity,
-                                                RouteActivity::class.java
-                                            )
-                                        intent.putExtra(RouteActivity.LOCATION, recommend.location)
-                                        startActivity(intent)
-                                    }
-                                })
-                            } else {
-                                Toast.makeText(
-                                    this@RecommendationActivity,
-                                    message,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                    viewModel.recommends.observe(this) { recommends ->
+                        if (!error && recommends.isNotEmpty()) {
+                            adapter = RecommendAdapter(recommends)
+                            binding.rvRecommend.adapter = adapter
+                            adapter.setOnItemClickCallbackRoute(object :
+                                RecommendAdapter.OnItemClickCallbackRoute {
+                                override fun onItemClicked(recommend: ResponseRecommendItem) {
+                                    val intent =
+                                        Intent(
+                                            this@RecommendationActivity,
+                                            RouteActivity::class.java
+                                        )
+                                    intent.putExtra(RouteActivity.LOCATION, recommend.location)
+                                    startActivity(intent)
+                                }
+                            })
                         }
                     }
                 }
-            } else {
-                Toast.makeText(this@RecommendationActivity, "Failure", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            Toast.makeText(this@RecommendationActivity, "Failure", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.isLoading.observe(this) {
