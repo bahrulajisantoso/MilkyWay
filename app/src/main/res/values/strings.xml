@@ -74,7 +74,7 @@
         <item>Tidak</item>
     </string-array>
 
-    <string name="article">Sumber : www.alodokter.com \n\nBeberapa Hal Terkait Bayi Baru Lahir
+    <string name="article">Sumber : www.alodokter.com/belajar-merawat-bayi-baru-lahir-bagi-pasangan-muda \n\nBeberapa Hal Terkait Bayi Baru Lahir
 Bayi baru lahir masih rentan, sehingga perlu diperlakukan secara hati-hati. Untuk itu, ada beberapa hal penting yang wajib diperhatikan saat merawat bayi baru lahir, di antaranya:
 
 \n\n1. Jaga kebersihan dan keamanan bayi
@@ -146,4 +146,5 @@ Jika stres yang dirasakan sudah menganggu keseharian Anda, tidak ada salahnya be
 Saat ini sudah banyak klinik maupun rumah sakit yang menyediakan kelas bagi pasangan yang ingin belajar merawat bayi baru lahir. Selain mengikuti kelas, Anda juga bisa belajar secara daring atau membaca artikel maupun buku yang membahas cara merawat bayi baru lahir.
 
 \n\nDengan membekali diri, harapannya Anda dan pasangan bisa lebih siap dan tidak kaget dengan tugas baru sebagai orang tua. Jika masih memiliki pertanyaan seputar merawat bayi baru lahir, jangan ragu berkonsultasi dengan dokter anak untuk mendapatkan saran terbaik.</string>
+    <string name="Profile">profile</string>
 </resources>

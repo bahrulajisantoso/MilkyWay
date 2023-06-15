@@ -33,6 +33,7 @@ class UserActivity : AppCompatActivity() {
             auth.signOut()
             pref.logOut()
             startActivity(Intent(this@UserActivity, LoginActivity::class.java))
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
         }
     }

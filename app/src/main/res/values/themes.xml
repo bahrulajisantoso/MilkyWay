@@ -60,6 +60,7 @@
     </style>
 
     <style name="Button">
+        <item name="cornerRadius">8dp</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">64dp</item>
         <item name="android:layout_marginStart">32dp</item>
@@ -75,6 +76,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:width">280dp</item>
+        <item name="cornerRadius">16dp</item>
         <item name="android:height">100dp</item>
         <item name="backgroundTint">@color/color_2</item>
         <item name="iconSize">60dp</item>
