@@ -75,8 +75,4 @@ class RequestViewModel : ViewModel() {
             }
         })
     }
-
-    companion object {
-        private val TAG = DonationViewModel::class.java.simpleName
-    }
 }

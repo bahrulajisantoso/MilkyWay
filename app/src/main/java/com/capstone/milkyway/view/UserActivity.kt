@@ -1,9 +1,8 @@
 package com.capstone.milkyway.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.capstone.milkyway.R
+import androidx.appcompat.app.AppCompatActivity
 import com.capstone.milkyway.UserPreference
 import com.capstone.milkyway.auth.LoginActivity
 import com.capstone.milkyway.databinding.ActivityUserBinding

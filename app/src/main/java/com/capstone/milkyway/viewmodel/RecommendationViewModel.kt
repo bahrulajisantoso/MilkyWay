@@ -67,8 +67,4 @@ class RecommendationViewModel : ViewModel() {
             }
         })
     }
-
-    companion object {
-        private val TAG = RecommendationViewModel::class.java.simpleName
-    }
 }

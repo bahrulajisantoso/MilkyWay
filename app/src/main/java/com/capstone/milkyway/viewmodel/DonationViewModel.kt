@@ -122,8 +122,4 @@ class DonationViewModel : ViewModel() {
             }
         })
     }
-
-    companion object {
-        private val TAG = DonationViewModel::class.java.simpleName
-    }
 }
