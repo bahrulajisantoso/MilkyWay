@@ -151,7 +151,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                         )
                     } else {
                         val ageInt = age.toInt()
-                        val phoneInt = age.toInt()
+                        val phoneInt = phone.toInt()
                         val donor = getString(R.string.donorRole)
 
                         addDonor(

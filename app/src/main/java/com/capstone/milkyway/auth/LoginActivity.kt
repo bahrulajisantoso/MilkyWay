@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var pref: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         auth = FirebaseAuth.getInstance()
+        pref = UserPreference(this)
 
         binding.accountTextView.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
@@ -69,15 +71,16 @@ class LoginActivity : AppCompatActivity() {
 
                             val pref = UserPreference(this@LoginActivity)
                             pref.setUser(userId, idToken, emailPref)
+
+                            Toast.makeText(this, "Login sukses", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            finish()
+                            hideLoading(binding.progressBar)
                         } else {
                             Log.d("Error", task.exception.toString())
                         }
                     }
-
-                    Toast.makeText(this, "Login sukses", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    finish()
                 } else {
                     Toast.makeText(
                         this,
@@ -122,7 +125,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (auth.currentUser != null) {
+        if (pref.getIdToken().isNotEmpty()) {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()

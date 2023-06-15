@@ -7,11 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.capstone.milkyway.MainActivity
-import com.capstone.milkyway.R
+import com.capstone.milkyway.*
 import com.capstone.milkyway.databinding.ActivityRegisterBinding
-import com.capstone.milkyway.hideLoading
-import com.capstone.milkyway.showLoading
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
@@ -19,6 +16,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var pref: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +26,7 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         auth = FirebaseAuth.getInstance()
+        pref = UserPreference(this)
 
         binding.accountTextView.setOnClickListener {
             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
@@ -68,12 +67,17 @@ class RegisterActivity : AppCompatActivity() {
                     startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     finish()
+                    hideLoading(binding.progressBar)
                 } else {
                     try {
                         throw it.exception!!
                     } catch (e: FirebaseAuthUserCollisionException) {
                         // email already in use
-                        Toast.makeText(applicationContext, "Email sudah digunakan", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Email sudah digunakan",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     hideLoading(binding.progressBar)
                 }
@@ -109,7 +113,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        if (auth.currentUser != null) {
+        if (pref.getIdToken().isNotEmpty()) {
             startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
