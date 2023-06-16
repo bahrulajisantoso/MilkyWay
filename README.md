@@ -45,7 +45,7 @@ MilkyWay is a mobile application to help troubled mothers fulfill the need to gi
   <li>Login & Registration User</li> 
   <li>Breast Milk Request Using Match Making</li> 
   <li>Breast Milk Donation</li> 
-  <li>Baby Care Article</li>
+  <li>Baby Care Information</li>
 </ul>
 
 
@@ -68,10 +68,4 @@ MilkyWay is a mobile application to help troubled mothers fulfill the need to gi
   ```
   https://developer.android.com/training/basics/firstapp/running-app?hl=id
   ```
-* Download MilkyWay App.
-
-  ```
-  https://drive.google.com/
-  ```
-
 <hr>
