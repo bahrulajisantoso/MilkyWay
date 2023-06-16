@@ -60,11 +60,17 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                 age.isEmpty() -> {
                     binding.ageEditText.error = "Umur harus diisi"
                 }
+                age.length > 2 -> {
+                    binding.ageEditText.error = "Umur tidak valid"
+                }
                 religion.isEmpty() -> {
                     Toast.makeText(this, "Agama harus diisi", Toast.LENGTH_SHORT).show()
                 }
                 phone.isEmpty() -> {
                     binding.phoneEditText.error = "Telephone harus diisi"
+                }
+                phone.length > 14 -> {
+                    binding.phoneEditText.error = "Telephone tidak valid"
                 }
                 bloodType.isEmpty() -> {
                     Toast.makeText(this, "Gol Darah harus diisi", Toast.LENGTH_SHORT).show()
@@ -83,7 +89,7 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                 }
                 else -> {
                     val ageInt = age.toInt()
-                    val phoneInt = phone.toInt()
+                    val phoneLong = phone.toLong()
                     val request = getString(R.string.requestRole)
 
                     addRequest(
@@ -91,7 +97,7 @@ class BreastMilkRequestActivity : AppCompatActivity() {
                         userId = pref.getUserId(),
                         name = name,
                         age = ageInt,
-                        phone = phoneInt,
+                        phone = phoneLong,
                         religion = religion,
                         healthCondition = health,
                         isSmoking = isSmoking,
@@ -110,7 +116,7 @@ class BreastMilkRequestActivity : AppCompatActivity() {
         userId: String,
         name: String,
         age: Int,
-        phone: Int,
+        phone: Long,
         religion: String,
         healthCondition: String,
         isSmoking: String,

@@ -45,7 +45,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
 
         val uuidIntent = intent.getStringExtra(UUID) ?: ""
         val nameIntent = intent.getStringExtra(NAME) ?: ""
-        val ageIntent = intent.getIntExtra(AGE, 0).toString()
+        val ageIntent = intent.getLongExtra(AGE, 0).toString()
         val religionIntent = intent.getStringExtra(RELIGION) ?: ""
         val phoneIntent = intent.getStringExtra(PHONE) ?: ""
         val bloodTypeIntent = intent.getStringExtra(BLOOD) ?: ""
@@ -108,11 +108,17 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                 age.isEmpty() -> {
                     binding.ageEditText.error = "Umur harus diisi"
                 }
+                age.length > 2 -> {
+                    binding.ageEditText.error = "Umur tidak valid"
+                }
                 religion.isEmpty() -> {
                     Toast.makeText(this, "Agama harus diisi", Toast.LENGTH_SHORT).show()
                 }
                 phone.isEmpty() -> {
                     binding.phoneEditText.error = "Telephone harus diisi"
+                }
+                phone.length > 14 -> {
+                    binding.phoneEditText.error = "Telephone tidak valid"
                 }
                 bloodType.isEmpty() -> {
                     Toast.makeText(this, "Gol Darah harus diisi", Toast.LENGTH_SHORT).show()
@@ -151,7 +157,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                         )
                     } else {
                         val ageInt = age.toInt()
-                        val phoneInt = phone.toInt()
+                        val phoneLong = phone.toLong()
                         val donor = getString(R.string.donorRole)
 
                         addDonor(
@@ -159,7 +165,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
                             userId = pref.getUserId(),
                             name = name,
                             age = ageInt,
-                            phone = phoneInt,
+                            phone = phoneLong,
                             religion = religion,
                             healthCondition = health,
                             isSmoking = isSmoking,
@@ -179,7 +185,7 @@ class BreastMilkDonationActivity : AppCompatActivity() {
         userId: String,
         name: String,
         age: Int,
-        phone: Int,
+        phone: Long,
         religion: String,
         healthCondition: String,
         isSmoking: String,

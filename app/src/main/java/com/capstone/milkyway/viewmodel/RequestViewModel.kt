@@ -25,7 +25,7 @@ class RequestViewModel : ViewModel() {
         userId: String,
         name: String,
         age: Int,
-        phone: Int,
+        phone: Long,
         religion: String,
         healthCondition: String,
         isSmoking: String,

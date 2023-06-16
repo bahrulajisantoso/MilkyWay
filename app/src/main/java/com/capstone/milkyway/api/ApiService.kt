@@ -18,7 +18,7 @@ interface ApiService {
         @Field("userId") userId: String,
         @Field("name") name: String,
         @Field("age") age: Int,
-        @Field("phone") phone: Int,
+        @Field("phone") phone: Long,
         @Field("religion") religion: String,
         @Field("health_condition") healthCondition: String,
         @Field("is_smoke") isSmoking: String,
