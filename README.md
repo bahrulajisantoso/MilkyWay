@@ -4,7 +4,7 @@
 
 <h2>About MilkyWay</h2>
 <p>
-MilkyWay
+MilkyWay is a mobile application to help troubled mothers fulfill the need to give babies their needed breastmilk. By gathering willing mothers who are willing to be a donor of breastmilk. We can help babies to fulfill their needs of breastmilk, especially on the exclusive breastfeeding necessity, thus helping many mothers in their needs.
 </p>
 
 <hr>
@@ -43,8 +43,8 @@ MilkyWay
 </p>
 <ul>
   <li>Login & Registration User</li> 
-  <li>Breast milk Request</li> 
-  <li>Breast milk Donation</li> 
+  <li>Breast Milk Request Using Match Making</li> 
+  <li>Breast Milk Donation</li> 
   <li>Baby Care Article</li>
 </ul>
 
