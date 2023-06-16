@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this,
-                        "Login gagal\nPastikan email dan password benar",
+                        "Login gagal, pastikan email dan password benar",
                         Toast.LENGTH_SHORT
                     ).show()
                     hideLoading(binding.progressBar)
