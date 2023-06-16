@@ -1,4 +1,4 @@
-![Group 14](https://github.com/bahrulajisantoso/MilkyWay/assets/logo.png)
+![img](https://github.com/bahrulajisantoso/MilkyWay/blob/master/assets/logo.png)
 
 ## MilkyWay - C23-PC727</h1>
 
